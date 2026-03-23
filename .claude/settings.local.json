@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd.exe /c \"where cmake\")",
+      "Bash(cmd.exe /c \"where g++\")",
+      "Bash(cmd.exe /c \"where cl\")",
+      "Bash(cmd.exe /c \"where ninja\")",
+      "Bash(g++ --version)",
+      "Read(//mingw64/**)",
+      "Read(//usr/**)",
+      "Bash(echo \"PATH=$PATH\")",
+      "Bash(ls /usr/bin/g*)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Program Files \\(x86\\)/**)",
+      "Read(//c/Program Files/LLVM/**)",
+      "Read(//c/msys64/mingw64/bin/**)",
+      "Read(//c/msys64/usr/bin/**)",
+      "Read(//c/msys64//**)",
+      "Read(//c//**)",
+      "Bash(ls /c/msys64/mingw64/bin/g++* /c/msys64/mingw64/bin/cmake* /c/msys64/mingw64/bin/ninja*)",
+      "Bash(ls /c/msys64/ucrt64/bin/g++* /c/msys64/ucrt64/bin/cmake*)",
+      "Bash(/c/msys64/ucrt64/bin/g++.exe --version)",
+      "Bash(/c/msys64/usr/bin/pacman.exe --version)",
+      "Bash(export PATH=\"/c/msys64/ucrt64/bin:$PATH\")",
+      "Bash(PROJ=\"c:/Users/j.kalnius/Documents/Process Simulator\")",
+      "Bash(mkdir -p \"$PROJ/build2\")",
+      "Read(//c/Users/j.kalnius/Documents/Process Simulator/build/$PROJ/**)",
+      "Bash(cmake \"$PROJ\" -G \"Ninja\" -DCMAKE_C_COMPILER=/c/msys64/ucrt64/bin/gcc.exe -DCMAKE_CXX_COMPILER=/c/msys64/ucrt64/bin/g++.exe -DCMAKE_BUILD_TYPE=Debug)",
+      "Bash(ninja)",
+      "Bash(./run_tests.exe)"
+    ]
+  }
+}

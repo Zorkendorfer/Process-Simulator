@@ -1,0 +1,65 @@
+{
+  "METHANE": {
+    "name": "Methane",
+    "MW": 16.043,
+    "Tc": 190.56,
+    "Pc": 4599200.0,
+    "omega": 0.0115,
+    "Cp_A": 19.89, "Cp_B": 5.024e-2, "Cp_C": 1.269e-5, "Cp_D": -11.01e-9,
+    "Antoine_A": 6.61184, "Antoine_B": 389.93, "Antoine_C": -7.53
+  },
+  "ETHANE": {
+    "name": "Ethane",
+    "MW": 30.070,
+    "Tc": 305.32,
+    "Pc": 4872000.0,
+    "omega": 0.0995,
+    "Cp_A": 6.895, "Cp_B": 0.17255, "Cp_C": -6.406e-5, "Cp_D": 7.285e-9,
+    "Antoine_A": 6.80896, "Antoine_B": 663.72, "Antoine_C": -16.469
+  },
+  "PROPANE": {
+    "name": "Propane",
+    "MW": 44.097,
+    "Tc": 369.83,
+    "Pc": 4248000.0,
+    "omega": 0.1523,
+    "Cp_A": -4.224, "Cp_B": 0.30655, "Cp_C": -1.586e-4, "Cp_D": 3.215e-8,
+    "Antoine_A": 6.82973, "Antoine_B": 813.20, "Antoine_C": -26.680
+  },
+  "N-BUTANE": {
+    "name": "n-Butane",
+    "MW": 58.123,
+    "Tc": 425.12,
+    "Pc": 3796000.0,
+    "omega": 0.2002,
+    "Cp_A": 9.487, "Cp_B": 0.33894, "Cp_C": -1.846e-4, "Cp_D": 4.077e-8,
+    "Antoine_A": 6.82485, "Antoine_B": 943.453, "Antoine_C": -39.734
+  },
+  "N-PENTANE": {
+    "name": "n-Pentane",
+    "MW": 72.150,
+    "Tc": 469.70,
+    "Pc": 3370000.0,
+    "omega": 0.2515,
+    "Cp_A": -3.626, "Cp_B": 0.48898, "Cp_C": -2.580e-4, "Cp_D": 5.305e-8,
+    "Antoine_A": 6.85221, "Antoine_B": 1064.63, "Antoine_C": -41.768
+  },
+  "CO2": {
+    "name": "Carbon Dioxide",
+    "MW": 44.010,
+    "Tc": 304.13,
+    "Pc": 7375000.0,
+    "omega": 0.2239,
+    "Cp_A": 24.997, "Cp_B": 5.304e-2, "Cp_C": -1.158e-5, "Cp_D": 8.600e-10,
+    "Antoine_A": 6.81228, "Antoine_B": 1301.679, "Antoine_C": -3.494
+  },
+  "WATER": {
+    "name": "Water",
+    "MW": 18.015,
+    "Tc": 647.10,
+    "Pc": 22064000.0,
+    "omega": 0.3449,
+    "Cp_A": 32.218, "Cp_B": 1.924e-3, "Cp_C": 1.055e-5, "Cp_D": -3.596e-9,
+    "Antoine_A": 8.07131, "Antoine_B": 1730.63, "Antoine_C": -39.724
+  }
+}
