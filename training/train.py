@@ -3,11 +3,47 @@
 
 import yaml
 import argparse
+import time
 from pathlib import Path
 from stable_baselines3 import PPO
 from stable_baselines3.common.env_util import make_vec_env
-from stable_baselines3.common.callbacks import EvalCallback, CheckpointCallback, CallbackList
+from stable_baselines3.common.callbacks import EvalCallback, CheckpointCallback, CallbackList, BaseCallback
 from stable_baselines3.common.monitor import Monitor
+
+
+class ProgressCallback(BaseCallback):
+    """Custom callback to print training progress to terminal."""
+    
+    def __init__(self, verbose=1):
+        super().__init__(verbose)
+        self.start_time = None
+        self.last_print_steps = 0
+        
+    def _on_training_start(self) -> None:
+        self.start_time = time.time()
+        print("\n" + "="*60)
+        print(f"{'Step':>10} | {'Reward':>10} | {'Time':>15}")
+        print("="*60)
+        
+    def _on_step(self) -> bool:
+        # Print every 500 steps
+        if self.num_timesteps - self.last_print_steps >= 500:
+            elapsed = time.time() - self.start_time
+            steps_per_sec = self.num_timesteps / elapsed if elapsed > 0 else 0
+            
+            # Get latest reward from logger
+            reward = self.logger.name_to_value.get("rollout/ep_rew_mean", 0)
+            
+            print(f"{self.num_timesteps:>10,} | {reward:>10.2f} | {elapsed:>6.0f}s ({steps_per_sec:.1f} steps/s)")
+            self.last_print_steps = self.num_timesteps
+        return True
+    
+    def _on_training_end(self) -> None:
+        elapsed = time.time() - self.start_time
+        print("="*70)
+        print(f"Training complete! Total time: {elapsed:.0f}s ({elapsed/60:.1f} min)")
+        print(f"Final steps: {self.num_timesteps:,}")
+        print("="*70 + "\n")
 
 
 def make_env(config: dict, rank: int = 0):
@@ -44,20 +80,21 @@ def train(config_path: str):
     eval_env = make_vec_env(make_env(cfg), n_envs=1)
 
     # Callbacks
+    progress_cb = ProgressCallback(verbose=1)
     eval_cb = EvalCallback(
         eval_env,
         best_model_save_path=cfg["checkpoint_dir"],
         log_path=cfg["log_dir"],
-        eval_freq=cfg.get("eval_freq", 5000),
-        n_eval_episodes=20,
+        eval_freq=cfg.get("eval_freq", 1000),
+        n_eval_episodes=5,
         deterministic=True,
-        verbose=1,
+        verbose=0,  # Silent, we'll show progress in terminal
     )
     ckpt_cb = CheckpointCallback(
-        save_freq=cfg.get("save_freq", 10000),
+        save_freq=cfg.get("save_freq", 5000),
         save_path=cfg["checkpoint_dir"],
         name_prefix="ppo_chemsim",
-        verbose=1,
+        verbose=0,  # Silent
     )
 
     # PPO agent
@@ -83,12 +120,12 @@ def train(config_path: str):
     # Train
     total_steps = cfg.get("total_timesteps", 500_000)
     print(f"Training PPO for {total_steps:,} timesteps...")
-    print(f"TensorBoard logs: {cfg['log_dir']}")
-    
+    print(f"Checkpoints saved to: {cfg['checkpoint_dir']}")
+    print(f"Using {n_envs} parallel environments, {cfg.get('n_steps', 2048)} steps per rollout\n")
+
     model.learn(
         total_timesteps=total_steps,
-        callback=CallbackList([eval_cb, ckpt_cb]),
-        progress_bar=True,
+        callback=CallbackList([progress_cb, eval_cb, ckpt_cb]),
     )
 
     # Save final model
