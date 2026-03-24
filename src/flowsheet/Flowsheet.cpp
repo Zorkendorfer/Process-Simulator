@@ -1,9 +1,42 @@
 #include "chemsim/flowsheet/Flowsheet.hpp"
 #include "chemsim/io/FlowsheetParser.hpp"
+#include <fstream>
+#include <iomanip>
 #include <numeric>
+#include <sstream>
 #include <stdexcept>
 
 namespace chemsim {
+
+namespace {
+
+std::string phaseToString(Phase phase) {
+    switch (phase) {
+    case Phase::VAPOR: return "VAPOR";
+    case Phase::LIQUID: return "LIQUID";
+    case Phase::MIXED: return "MIXED";
+    case Phase::UNKNOWN: return "UNKNOWN";
+    }
+    return "UNKNOWN";
+}
+
+nlohmann::json streamToJson(const Stream& stream) {
+    return {
+        {"name", stream.name},
+        {"T", stream.T},
+        {"P", stream.P},
+        {"totalFlow", stream.totalFlow},
+        {"z", stream.z},
+        {"phase", phaseToString(stream.phase)},
+        {"vaporFraction", stream.vaporFraction},
+        {"x", stream.x},
+        {"y", stream.y},
+        {"H", stream.H},
+        {"S", stream.S}
+    };
+}
+
+} // namespace
 
 Flowsheet::Flowsheet(std::vector<Component> components)
     : components_(std::move(components)) {
@@ -112,6 +145,65 @@ IUnitOp& Flowsheet::getUnit(const std::string& name) {
 
 const IUnitOp& Flowsheet::getUnit(const std::string& name) const {
     return graph_.unit(name);
+}
+
+std::vector<std::string> Flowsheet::streamNames() const {
+    std::vector<std::string> names;
+    names.reserve(streams_.size());
+    for (const auto& [name, _] : streams_)
+        names.push_back(name);
+    return names;
+}
+
+std::string Flowsheet::summary() const {
+    std::ostringstream out;
+    out << std::fixed << std::setprecision(3);
+    out << "ChemSim Flowsheet Summary\n";
+    out << "Components:";
+    for (const auto& component : components_)
+        out << ' ' << component.id;
+    out << "\nStreams (" << streams_.size() << ")\n";
+    for (const auto& [name, stream] : streams_) {
+        out << "  " << name
+            << ": F=" << stream.totalFlow << " mol/s"
+            << ", T=" << stream.T << " K"
+            << ", P=" << stream.P << " Pa"
+            << ", phase=" << phaseToString(stream.phase)
+            << ", beta=" << stream.vaporFraction
+            << '\n';
+    }
+    return out.str();
+}
+
+void Flowsheet::printSummary(std::ostream& os) const {
+    os << summary();
+}
+
+nlohmann::json Flowsheet::resultsAsJson() const {
+    nlohmann::json result;
+    result["components"] = nlohmann::json::array();
+    for (const auto& component : components_) {
+        result["components"].push_back({
+            {"id", component.id},
+            {"name", component.name},
+            {"MW", component.MW},
+            {"Tc", component.Tc},
+            {"Pc", component.Pc},
+            {"omega", component.omega}
+        });
+    }
+
+    result["streams"] = nlohmann::json::object();
+    for (const auto& [name, stream] : streams_)
+        result["streams"][name] = streamToJson(stream);
+    return result;
+}
+
+void Flowsheet::exportResults(const std::string& json_path) const {
+    std::ofstream out(json_path);
+    if (!out.is_open())
+        throw std::runtime_error("Flowsheet: cannot open results path " + json_path);
+    out << resultsAsJson().dump(2);
 }
 
 Flowsheet Flowsheet::fromJSON(const std::string& json_path,

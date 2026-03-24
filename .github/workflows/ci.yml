@@ -1,0 +1,44 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  windows-mingw:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-eigen3
+            git
+
+      - name: Configure
+        shell: msys2 {0}
+        run: >
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=Debug
+          -DCMAKE_C_COMPILER=/mingw64/bin/gcc.exe
+          -DCMAKE_CXX_COMPILER=/mingw64/bin/g++.exe
+          -DFETCHCONTENT_UPDATES_DISCONNECTED=ON
+
+      - name: Build
+        shell: msys2 {0}
+        run: cmake --build build --target run_tests chemsim
+
+      - name: Test
+        shell: msys2 {0}
+        run: ./build/run_tests.exe

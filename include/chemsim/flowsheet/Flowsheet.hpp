@@ -5,8 +5,10 @@
 #include "chemsim/flowsheet/RecycleSolver.hpp"
 #include "chemsim/thermo/FlashCalculator.hpp"
 #include "chemsim/thermo/PengRobinson.hpp"
+#include <iosfwd>
 #include <map>
 #include <memory>
+#include <nlohmann/json.hpp>
 #include <string>
 #include <vector>
 
@@ -45,6 +47,11 @@ public:
 
     const std::vector<Component>& components() const { return components_; }
     const FlashCalculator& flashCalculator() const { return *flash_; }
+    std::vector<std::string> streamNames() const;
+    std::string summary() const;
+    void printSummary(std::ostream& os) const;
+    nlohmann::json resultsAsJson() const;
+    void exportResults(const std::string& json_path) const;
 
     static Flowsheet fromJSON(const std::string& json_path,
                               const std::string& component_db_path);

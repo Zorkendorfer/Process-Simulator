@@ -1,0 +1,54 @@
+{
+  "components": ["METHANE", "ETHANE", "PROPANE", "N-BUTANE"],
+  "streams": {
+    "FEED": {
+      "T": 260.0,
+      "P": 2000000.0,
+      "flow": 100.0,
+      "composition": {
+        "METHANE": 0.4,
+        "ETHANE": 0.3,
+        "PROPANE": 0.2,
+        "N-BUTANE": 0.1
+      }
+    },
+    "RECYCLE": {
+      "T": 260.0,
+      "P": 2000000.0,
+      "flow": 100.0,
+      "composition": {
+        "METHANE": 0.4,
+        "ETHANE": 0.3,
+        "PROPANE": 0.2,
+        "N-BUTANE": 0.1
+      }
+    },
+    "MIXOUT": {
+      "T": 260.0,
+      "P": 2000000.0,
+      "flow": 100.0,
+      "composition": {
+        "METHANE": 0.4,
+        "ETHANE": 0.3,
+        "PROPANE": 0.2,
+        "N-BUTANE": 0.1
+      }
+    }
+  },
+  "units": {
+    "MIX": {
+      "type": "Mixer",
+      "inlet_ports": ["fresh", "recycle"]
+    },
+    "SPLIT": {
+      "type": "Splitter",
+      "fractions": [0.2, 0.8]
+    }
+  },
+  "connections": [
+    {"stream": "FEED", "to": "MIX", "to_port": "fresh"},
+    {"stream": "RECYCLE", "from": "SPLIT", "from_port": "out1", "to": "MIX", "to_port": "recycle"},
+    {"stream": "MIXOUT", "from": "MIX", "from_port": "out", "to": "SPLIT", "to_port": "in"},
+    {"stream": "PRODUCT", "from": "SPLIT", "from_port": "out0"}
+  ]
+}

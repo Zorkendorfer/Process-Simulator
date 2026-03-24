@@ -13,6 +13,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra")
 
 # ── Dependencies ──────────────────────────────────────────────────────────────
 find_package(Eigen3 REQUIRED)
+find_package(Python3 COMPONENTS Interpreter Development.Module)
 
 # GoogleTest via FetchContent (no git submodule needed for now)
 include(FetchContent)
@@ -33,11 +34,23 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(nlohmann_json)
 
+FetchContent_Declare(
+  pybind11
+  GIT_REPOSITORY https://github.com/pybind/pybind11.git
+  GIT_TAG        v2.13.6
+)
+FetchContent_MakeAvailable(pybind11)
+
 # ── Core library ──────────────────────────────────────────────────────────────
 file(GLOB_RECURSE CHEMSIM_SOURCES "src/**/*.cpp")
 add_library(chemsim_core STATIC ${CHEMSIM_SOURCES})
 target_include_directories(chemsim_core PUBLIC include)
 target_link_libraries(chemsim_core PUBLIC Eigen3::Eigen nlohmann_json::nlohmann_json)
+
+pybind11_add_module(chemsim MODULE python/chemsim.cpp)
+target_link_libraries(chemsim PRIVATE chemsim_core)
+target_compile_definitions(chemsim PRIVATE
+    CHEMSIM_DATA_DIR="${CMAKE_SOURCE_DIR}/data")
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 enable_testing()
@@ -51,7 +64,7 @@ if(WIN32)
   add_test(
     NAME all_tests
     COMMAND ${CMAKE_COMMAND} -E env
-            "PATH=$<TARGET_FILE_DIR:run_tests>;C:/msys64/ucrt64/bin;$ENV{PATH}"
+            "PATH=$<TARGET_FILE_DIR:run_tests>;C:/msys64/mingw64/bin;C:/msys64/ucrt64/bin;$ENV{PATH}"
             $<TARGET_FILE:run_tests>)
 else()
   add_test(NAME all_tests COMMAND run_tests)
