@@ -17,8 +17,6 @@
 			"pybind11_add_module",
 			"target_link_libraries",
 			"include",
-			"add_custom_command",
-			"pybind11_strip",
 			"target_compile_definitions"
 		],
 		"files" : 
@@ -93,19 +91,7 @@
 				"parent" : 1
 			},
 			{
-				"command" : 5,
-				"file" : 0,
-				"line" : 223,
-				"parent" : 1
-			},
-			{
 				"command" : 4,
-				"file" : 2,
-				"line" : 450,
-				"parent" : 12
-			},
-			{
-				"command" : 6,
 				"file" : 1,
 				"line" : 58,
 				"parent" : 0
@@ -138,13 +124,13 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O3 -DNDEBUG -std=gnu++17 -fvisibility=hidden"
+					"fragment" : "-g -O0 -Wall -Wextra -std=gnu++17 -fvisibility=hidden"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 14,
+					"backtrace" : 12,
 					"define" : "CHEMSIM_DATA_DIR=\"C:/Users/j.kalnius/Documents/Process Simulator/data\""
 				},
 				{
@@ -246,13 +232,6 @@
 	],
 	"name" : "chemsim",
 	"nameOnDisk" : "chemsim.cp314-win_amd64.pyd",
-	"orderDependencies" : 
-	[
-		{
-			"backtrace" : 13,
-			"id" : "chemsim::@6890427a1f51a3e7e1df"
-		}
-	],
 	"paths" : 
 	{
 		"build" : ".",

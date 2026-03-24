@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: ChemSim
-# Configurations: Release
+# Configurations: Debug
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Release
+CONFIGURATION = Debug
 # =============================================================================
 # Include auxiliary files.
 
@@ -49,109 +49,109 @@ cmake_ninja_workdir = C$:/Users/j.kalnius/Documents/Process$ Simulator/build/
 
 build cmake_object_order_depends_target_chemsim_core: phony || .
 
-build CMakeFiles/chemsim_core.dir/src/flowsheet/Flowsheet.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/flowsheet/Flowsheet.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/flowsheet/Flowsheet.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/flowsheet/Flowsheet.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\flowsheet\Flowsheet.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\flowsheet
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/flowsheet/FlowsheetGraph.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/flowsheet/FlowsheetGraph.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/flowsheet/FlowsheetGraph.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/flowsheet/FlowsheetGraph.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\flowsheet\FlowsheetGraph.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\flowsheet
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/flowsheet/RecycleSolver.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/flowsheet/RecycleSolver.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/flowsheet/RecycleSolver.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/flowsheet/RecycleSolver.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\flowsheet\RecycleSolver.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\flowsheet
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/io/FlowsheetParser.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/io/FlowsheetParser.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/io/FlowsheetParser.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/io/FlowsheetParser.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\io\FlowsheetParser.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\io
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/ops/Compressor.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/Compressor.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/ops/Compressor.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/Compressor.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\ops\Compressor.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\ops
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/ops/DistillationColumn.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/DistillationColumn.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/ops/DistillationColumn.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/DistillationColumn.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\ops\DistillationColumn.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\ops
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/ops/FlashDrum.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/FlashDrum.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/ops/FlashDrum.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/FlashDrum.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\ops\FlashDrum.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\ops
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/ops/HeatExchanger.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/HeatExchanger.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/ops/HeatExchanger.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/HeatExchanger.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\ops\HeatExchanger.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\ops
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/ops/Pump.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/Pump.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/ops/Pump.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/Pump.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\ops\Pump.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\ops
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/ops/Reactor.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/Reactor.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/ops/Reactor.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/ops/Reactor.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\ops\Reactor.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\ops
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/thermo/FlashCalculator.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/thermo/FlashCalculator.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/thermo/FlashCalculator.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/thermo/FlashCalculator.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\thermo\FlashCalculator.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\thermo
   TARGET_SUPPORT_DIR = CMakeFiles\chemsim_core.dir
 
-build CMakeFiles/chemsim_core.dir/src/thermo/PengRobinson.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/src/thermo/PengRobinson.cpp || cmake_object_order_depends_target_chemsim_core
-  CONFIG = Release
+build CMakeFiles/chemsim_core.dir/src/thermo/PengRobinson.cpp.obj: CXX_COMPILER__chemsim_core_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/src/thermo/PengRobinson.cpp || cmake_object_order_depends_target_chemsim_core
+  CONFIG = Debug
   DEP_FILE = CMakeFiles\chemsim_core.dir\src\thermo\PengRobinson.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim_core.dir\src\thermo
@@ -165,9 +165,9 @@ build CMakeFiles/chemsim_core.dir/src/thermo/PengRobinson.cpp.obj: CXX_COMPILER_
 #############################################
 # Link the static library libchemsim_core.a
 
-build libchemsim_core.a: CXX_STATIC_LIBRARY_LINKER__chemsim_core_Release CMakeFiles/chemsim_core.dir/src/flowsheet/Flowsheet.cpp.obj CMakeFiles/chemsim_core.dir/src/flowsheet/FlowsheetGraph.cpp.obj CMakeFiles/chemsim_core.dir/src/flowsheet/RecycleSolver.cpp.obj CMakeFiles/chemsim_core.dir/src/io/FlowsheetParser.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/Compressor.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/DistillationColumn.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/FlashDrum.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/HeatExchanger.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/Pump.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/Reactor.cpp.obj CMakeFiles/chemsim_core.dir/src/thermo/FlashCalculator.cpp.obj CMakeFiles/chemsim_core.dir/src/thermo/PengRobinson.cpp.obj
-  CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+build libchemsim_core.a: CXX_STATIC_LIBRARY_LINKER__chemsim_core_Debug CMakeFiles/chemsim_core.dir/src/flowsheet/Flowsheet.cpp.obj CMakeFiles/chemsim_core.dir/src/flowsheet/FlowsheetGraph.cpp.obj CMakeFiles/chemsim_core.dir/src/flowsheet/RecycleSolver.cpp.obj CMakeFiles/chemsim_core.dir/src/io/FlowsheetParser.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/Compressor.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/DistillationColumn.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/FlashDrum.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/HeatExchanger.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/Pump.cpp.obj CMakeFiles/chemsim_core.dir/src/ops/Reactor.cpp.obj CMakeFiles/chemsim_core.dir/src/thermo/FlashCalculator.cpp.obj CMakeFiles/chemsim_core.dir/src/thermo/PengRobinson.cpp.obj
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -g -O0 -Wall -Wextra
   OBJECT_DIR = CMakeFiles\chemsim_core.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -184,11 +184,11 @@ build libchemsim_core.a: CXX_STATIC_LIBRARY_LINKER__chemsim_core_Release CMakeFi
 
 build cmake_object_order_depends_target_chemsim: phony || cmake_object_order_depends_target_chemsim_core
 
-build CMakeFiles/chemsim.dir/python/chemsim.cpp.obj: CXX_COMPILER__chemsim_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/python/chemsim.cpp || cmake_object_order_depends_target_chemsim
-  CONFIG = Release
+build CMakeFiles/chemsim.dir/python/chemsim.cpp.obj: CXX_COMPILER__chemsim_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/python/chemsim.cpp || cmake_object_order_depends_target_chemsim
+  CONFIG = Debug
   DEFINES = -DCHEMSIM_DATA_DIR="\"C:/Users/j.kalnius/Documents/Process Simulator/data\"" -Dchemsim_EXPORTS
   DEP_FILE = CMakeFiles\chemsim.dir\python\chemsim.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17 -fvisibility=hidden
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17 -fvisibility=hidden
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/pybind11-src/include" -isystem C:/Users/j.kalnius/AppData/Local/Programs/Python/Python314/Include -isystem C:/msys64/ucrt64/include/eigen3
   OBJECT_DIR = CMakeFiles\chemsim.dir
   OBJECT_FILE_DIR = CMakeFiles\chemsim.dir\python
@@ -202,13 +202,13 @@ build CMakeFiles/chemsim.dir/python/chemsim.cpp.obj: CXX_COMPILER__chemsim_unsca
 #############################################
 # Link the shared module chemsim.cp314-win_amd64.pyd
 
-build chemsim.cp314-win_amd64.pyd: CXX_MODULE_LIBRARY_LINKER__chemsim_Release CMakeFiles/chemsim.dir/python/chemsim.cpp.obj | libchemsim_core.a C$:/Users/j.kalnius/AppData/Local/Programs/Python/Python314/libs/python314.lib || libchemsim_core.a
-  CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+build chemsim.cp314-win_amd64.pyd: CXX_MODULE_LIBRARY_LINKER__chemsim_Debug CMakeFiles/chemsim.dir/python/chemsim.cpp.obj | libchemsim_core.a C$:/Users/j.kalnius/AppData/Local/Programs/Python/Python314/libs/python314.lib || libchemsim_core.a
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -g -O0 -Wall -Wextra
   LINK_FLAGS = -shared
   LINK_LIBRARIES = libchemsim_core.a  C:/Users/j.kalnius/AppData/Local/Programs/Python/Python314/libs/python314.lib  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\chemsim.dir
-  POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\j.kalnius\Documents\Process Simulator\build" && C:\msys64\mingw64\bin\strip.exe "C:/Users/j.kalnius/Documents/Process Simulator/build/chemsim.cp314-win_amd64.pyd""
+  POST_BUILD = cd .
   PRE_LINK = cd .
   TARGET_FILE = chemsim.cp314-win_amd64.pyd
   TARGET_IMPLIB = libchemsim.dll.a
@@ -224,41 +224,41 @@ build chemsim.cp314-win_amd64.pyd: CXX_MODULE_LIBRARY_LINKER__chemsim_Release CM
 
 build cmake_object_order_depends_target_run_tests: phony || cmake_object_order_depends_target_chemsim_core cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
 
-build CMakeFiles/run_tests.dir/tests/test_phase1.cpp.obj: CXX_COMPILER__run_tests_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/tests/test_phase1.cpp || cmake_object_order_depends_target_run_tests
-  CONFIG = Release
+build CMakeFiles/run_tests.dir/tests/test_phase1.cpp.obj: CXX_COMPILER__run_tests_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/tests/test_phase1.cpp || cmake_object_order_depends_target_run_tests
+  CONFIG = Debug
   DEFINES = -DCHEMSIM_DATA_DIR="\"C:/Users/j.kalnius/Documents/Process Simulator/data\""
   DEP_FILE = CMakeFiles\run_tests.dir\tests\test_phase1.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3 -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest"
   OBJECT_DIR = CMakeFiles\run_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\run_tests.dir\tests
   TARGET_SUPPORT_DIR = CMakeFiles\run_tests.dir
 
-build CMakeFiles/run_tests.dir/tests/test_phase2.cpp.obj: CXX_COMPILER__run_tests_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/tests/test_phase2.cpp || cmake_object_order_depends_target_run_tests
-  CONFIG = Release
+build CMakeFiles/run_tests.dir/tests/test_phase2.cpp.obj: CXX_COMPILER__run_tests_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/tests/test_phase2.cpp || cmake_object_order_depends_target_run_tests
+  CONFIG = Debug
   DEFINES = -DCHEMSIM_DATA_DIR="\"C:/Users/j.kalnius/Documents/Process Simulator/data\""
   DEP_FILE = CMakeFiles\run_tests.dir\tests\test_phase2.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3 -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest"
   OBJECT_DIR = CMakeFiles\run_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\run_tests.dir\tests
   TARGET_SUPPORT_DIR = CMakeFiles\run_tests.dir
 
-build CMakeFiles/run_tests.dir/tests/test_phase3.cpp.obj: CXX_COMPILER__run_tests_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/tests/test_phase3.cpp || cmake_object_order_depends_target_run_tests
-  CONFIG = Release
+build CMakeFiles/run_tests.dir/tests/test_phase3.cpp.obj: CXX_COMPILER__run_tests_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/tests/test_phase3.cpp || cmake_object_order_depends_target_run_tests
+  CONFIG = Debug
   DEFINES = -DCHEMSIM_DATA_DIR="\"C:/Users/j.kalnius/Documents/Process Simulator/data\""
   DEP_FILE = CMakeFiles\run_tests.dir\tests\test_phase3.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3 -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest"
   OBJECT_DIR = CMakeFiles\run_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\run_tests.dir\tests
   TARGET_SUPPORT_DIR = CMakeFiles\run_tests.dir
 
-build CMakeFiles/run_tests.dir/tests/test_phase5.cpp.obj: CXX_COMPILER__run_tests_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/tests/test_phase5.cpp || cmake_object_order_depends_target_run_tests
-  CONFIG = Release
+build CMakeFiles/run_tests.dir/tests/test_phase5.cpp.obj: CXX_COMPILER__run_tests_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/tests/test_phase5.cpp || cmake_object_order_depends_target_run_tests
+  CONFIG = Debug
   DEFINES = -DCHEMSIM_DATA_DIR="\"C:/Users/j.kalnius/Documents/Process Simulator/data\""
   DEP_FILE = CMakeFiles\run_tests.dir\tests\test_phase5.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -std=gnu++17
+  FLAGS = -g -O0 -Wall -Wextra -std=gnu++17
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include" -isystem C:/msys64/ucrt64/include/eigen3 -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest"
   OBJECT_DIR = CMakeFiles\run_tests.dir
   OBJECT_FILE_DIR = CMakeFiles\run_tests.dir\tests
@@ -272,9 +272,9 @@ build CMakeFiles/run_tests.dir/tests/test_phase5.cpp.obj: CXX_COMPILER__run_test
 #############################################
 # Link the executable run_tests.exe
 
-build run_tests.exe: CXX_EXECUTABLE_LINKER__run_tests_Release CMakeFiles/run_tests.dir/tests/test_phase1.cpp.obj CMakeFiles/run_tests.dir/tests/test_phase2.cpp.obj CMakeFiles/run_tests.dir/tests/test_phase3.cpp.obj CMakeFiles/run_tests.dir/tests/test_phase5.cpp.obj | libchemsim_core.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a libchemsim_core.a
-  CONFIG = Release
-  FLAGS = -O3 -DNDEBUG
+build run_tests.exe: CXX_EXECUTABLE_LINKER__run_tests_Debug CMakeFiles/run_tests.dir/tests/test_phase1.cpp.obj CMakeFiles/run_tests.dir/tests/test_phase2.cpp.obj CMakeFiles/run_tests.dir/tests/test_phase3.cpp.obj CMakeFiles/run_tests.dir/tests/test_phase5.cpp.obj | libchemsim_core.a lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a libchemsim_core.a
+  CONFIG = Debug
+  FLAGS = -g -O0 -Wall -Wextra
   LINK_LIBRARIES = libchemsim_core.a  lib/libgtest_main.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\run_tests.dir
   POST_BUILD = cd .
@@ -457,10 +457,10 @@ build _deps/googletest-build/install/strip: phony _deps/googletest-build/CMakeFi
 
 build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depends_target_gtest
 
-build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj: CXX_COMPILER__gmock_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/build/_deps/googletest-src/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
-  CONFIG = Release
+build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj: CXX_COMPILER__gmock_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/build/_deps/googletest-src/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
+  CONFIG = Debug
   DEP_FILE = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src\gmock-all.cc.obj.d
-  FLAGS = -O3 -DNDEBUG -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  FLAGS = -g -O0 -Wall -Wextra -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googlemock/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googlemock" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest"
   OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir\src
@@ -474,9 +474,9 @@ build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.ob
 #############################################
 # Link the static library lib\libgmock.a
 
-build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_Release _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj || lib/libgtest.a
-  CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_Debug _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.obj || lib/libgtest.a
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -g -O0 -Wall -Wextra
   OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -493,10 +493,10 @@ build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_Release _deps/googletest-
 
 build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_depends_target_gmock cmake_object_order_depends_target_gtest
 
-build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj: CXX_COMPILER__gmock_main_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/build/_deps/googletest-src/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
-  CONFIG = Release
+build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj: CXX_COMPILER__gmock_main_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/build/_deps/googletest-src/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
+  CONFIG = Debug
   DEP_FILE = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src\gmock_main.cc.obj.d
-  FLAGS = -O3 -DNDEBUG -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  FLAGS = -g -O0 -Wall -Wextra -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
   INCLUDES = -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googlemock/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googlemock" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest"
   OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir\src
@@ -510,9 +510,9 @@ build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main
 #############################################
 # Link the static library lib\libgmock_main.a
 
-build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_Release _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj || lib/libgmock.a lib/libgtest.a
-  CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.obj || lib/libgmock.a lib/libgtest.a
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -g -O0 -Wall -Wextra
   OBJECT_DIR = _deps\googletest-build\googlemock\CMakeFiles\gmock_main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -611,10 +611,10 @@ build _deps/googletest-build/googlemock/install/strip: phony _deps/googletest-bu
 
 build cmake_object_order_depends_target_gtest: phony || .
 
-build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj: CXX_COMPILER__gtest_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/build/_deps/googletest-src/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
-  CONFIG = Release
+build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj: CXX_COMPILER__gtest_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/build/_deps/googletest-src/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
+  CONFIG = Debug
   DEP_FILE = _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src\gtest-all.cc.obj.d
-  FLAGS = -O3 -DNDEBUG -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  FLAGS = -g -O0 -Wall -Wextra -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
   INCLUDES = -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include" -I"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest"
   OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir\src
@@ -628,9 +628,9 @@ build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.ob
 #############################################
 # Link the static library lib\libgtest.a
 
-build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_Release _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj
-  CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_Debug _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -g -O0 -Wall -Wextra
   OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -647,10 +647,10 @@ build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_Release _deps/googletest-
 
 build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_depends_target_gtest
 
-build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: CXX_COMPILER__gtest_main_unscanned_Release C$:/Users/j.kalnius/Documents/Process$ Simulator/build/_deps/googletest-src/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
-  CONFIG = Release
+build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj: CXX_COMPILER__gtest_main_unscanned_Debug C$:/Users/j.kalnius/Documents/Process$ Simulator/build/_deps/googletest-src/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
+  CONFIG = Debug
   DEP_FILE = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src\gtest_main.cc.obj.d
-  FLAGS = -O3 -DNDEBUG -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+  FLAGS = -g -O0 -Wall -Wextra -std=c++17 -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=0 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
   INCLUDES = -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include" -isystem "C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest"
   OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir
   OBJECT_FILE_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir\src
@@ -664,9 +664,9 @@ build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main
 #############################################
 # Link the static library lib\libgtest_main.a
 
-build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_Release _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj || lib/libgtest.a
-  CONFIG = Release
-  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj || lib/libgtest.a
+  CONFIG = Debug
+  LANGUAGE_COMPILE_FLAGS = -g -O0 -Wall -Wextra
   OBJECT_DIR = _deps\googletest-build\googletest\CMakeFiles\gtest_main.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
