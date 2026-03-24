@@ -81,8 +81,13 @@ class SimulatorBridge:
     # ── Public API ────────────────────────────────────────────────────────────
 
     def reset(self) -> SimResult:
-        """Restore nominal state and solve."""
-        self.flowsheet.reset_to_base()
+        """Reload flowsheet from JSON and solve at nominal conditions.
+
+        Full reload (not just stream reset) guarantees determinism because
+        set_param changes to unit ops (reflux ratio, distillate frac) are
+        also reset — they are not touched by reset_to_base().
+        """
+        self.flowsheet = chemsim.Flowsheet.from_json(self._json, self._db)
         try:
             ok = self.flowsheet.solve()
         except Exception:

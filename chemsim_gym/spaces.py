@@ -32,10 +32,16 @@ class ProcessSpaces:
         )
 
     def observation_space(self) -> gym.spaces.Box:
-        return gym.spaces.Box(
-            low=-np.inf, high=np.inf,
-            shape=(self.obs_dim,), dtype=np.float32,
+        # [dist_z × NC, btms_z × NC, T_top, T_mid, T_bot, Q_reb_MW, Q_cond_MW, converged]
+        low  = np.array(
+            [0.0] * (2 * self.nc) + [100.0, 100.0, 100.0, -1e3, -1e3, 0.0],
+            dtype=np.float32,
         )
+        high = np.array(
+            [1.0] * (2 * self.nc) + [700.0, 700.0, 700.0,  1e3,  0.0, 1.0],
+            dtype=np.float32,
+        )
+        return gym.spaces.Box(low=low, high=high, dtype=np.float32)
 
     @staticmethod
     def denormalize_action(action: np.ndarray) -> np.ndarray:
