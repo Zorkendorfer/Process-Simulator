@@ -726,7 +726,7 @@
 					"jsonFile" : "directory-_deps.pybind11-build-Debug-09d07f7a2977b7d1c8ca.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.5"
+						"string" : "3.10"
 					},
 					"parentIndex" : 0,
 					"projectIndex" : 5,

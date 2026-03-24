@@ -58,7 +58,9 @@
       "Read(//c/Users/j.kalnius/AppData/Local/Temp/**)",
       "Bash(ldd C:/msys64/ucrt64/bin/g++.exe)",
       "Bash(g++ -std=gnu++17 /c/Users/j.kalnius/AppData/Local/Temp/test.cpp -o /c/Users/j.kalnius/AppData/Local/Temp/test_out.exe)",
-      "Bash(/c/Users/j.kalnius/AppData/Local/Temp/test_out.exe)"
+      "Bash(/c/Users/j.kalnius/AppData/Local/Temp/test_out.exe)",
+      "Bash(grep -r \"pybind11\\\\|PYBIND11_MODULE\\\\|py::module\" '/c/Users/j.kalnius/Documents/Process Simulator' --include=*.cpp --include=*.h)",
+      "Bash(grep -r \"Qt\\\\|wxWidgets\\\\|ImGui\\\\|window\\\\|widget\" '/c/Users/j.kalnius/Documents/Process Simulator/src' --include=*.cpp --include=*.h)"
     ]
   }
 }
