@@ -1,6 +1,16 @@
 #include <gtest/gtest.h>
 #include <cmath>
+#include <filesystem>
+#include <fstream>
 #include "chemsim/io/ComponentDB.hpp"
+#include "chemsim/io/FlowsheetParser.hpp"
+#include "chemsim/flowsheet/FlashDrumOp.hpp"
+#include "chemsim/flowsheet/Flowsheet.hpp"
+#include "chemsim/flowsheet/FlowsheetGraph.hpp"
+#include "chemsim/flowsheet/MixerOp.hpp"
+#include "chemsim/flowsheet/PumpOp.hpp"
+#include "chemsim/flowsheet/RecycleSolver.hpp"
+#include "chemsim/flowsheet/SplitterOp.hpp"
 #include "chemsim/thermo/PengRobinson.hpp"
 #include "chemsim/thermo/FlashCalculator.hpp"
 #include "chemsim/ops/FlashDrum.hpp"
@@ -373,4 +383,255 @@ TEST_F(DistColTest, CondenserDutyNegative) {
     col.solve();
     EXPECT_LT(col.Q_condenser, 0.0);  // heat removed
     EXPECT_GT(col.Q_reboiler,  0.0);  // heat added
+}
+
+// Phase 4: flowsheet layer
+
+static Stream flashedStream(const FlashCalculator& fc,
+                            double T, double P, double F,
+                            const std::vector<double>& z) {
+    Stream s;
+    s.T = T;
+    s.P = P;
+    s.totalFlow = F;
+    s.z = z;
+
+    auto r = fc.flashTP(T, P, z);
+    s.vaporFraction = r.beta;
+    s.x = r.x;
+    s.y = r.y;
+    s.phase = (r.beta < 1e-10) ? Phase::LIQUID
+            : (r.beta > 1.0 - 1e-10) ? Phase::VAPOR
+            : Phase::MIXED;
+    s.H = fc.totalEnthalpy(r);
+    s.S = fc.totalEntropy(r);
+    return s;
+}
+
+class FlowsheetOpsTest : public ::testing::Test {
+protected:
+    C4System sys;
+};
+
+TEST_F(FlowsheetOpsTest, MixerOpCombinesMaterialAndKeepsSharedState) {
+    MixerOp mixer(*sys.fc, {"feed_a", "feed_b"});
+    auto a = flashedStream(*sys.fc, 260.0, 2e6, 40.0, sys.z4);
+    auto b = flashedStream(*sys.fc, 260.0, 2e6, 60.0, sys.z4);
+
+    mixer.setInlet("feed_a", a);
+    mixer.setInlet("feed_b", b);
+    mixer.solve();
+
+    const auto& out = mixer.getOutlet("out");
+    EXPECT_NEAR(out.totalFlow, 100.0, 1e-8);
+    EXPECT_NEAR(out.T, 260.0, 0.05);
+    EXPECT_NEAR(out.P, 2e6, 1.0);
+    for (int i = 0; i < 4; ++i)
+        EXPECT_NEAR(out.z[i], sys.z4[i], 1e-8);
+}
+
+TEST_F(FlowsheetOpsTest, SplitterOpPreservesCompositionAndSplitsFlow) {
+    SplitterOp splitter({0.25, 0.75});
+    auto feed = flashedStream(*sys.fc, 260.0, 2e6, 80.0, sys.z4);
+
+    splitter.setInlet("in", feed);
+    splitter.solve();
+
+    const auto& out0 = splitter.getOutlet("out0");
+    const auto& out1 = splitter.getOutlet("out1");
+    EXPECT_NEAR(out0.totalFlow, 20.0, 1e-8);
+    EXPECT_NEAR(out1.totalFlow, 60.0, 1e-8);
+    for (int i = 0; i < 4; ++i) {
+        EXPECT_NEAR(out0.z[i], feed.z[i], 1e-12);
+        EXPECT_NEAR(out1.z[i], feed.z[i], 1e-12);
+    }
+}
+
+TEST_F(FlowsheetOpsTest, FlashDrumOpDelegatesToUnderlyingUnit) {
+    FlashDrumOp drum(FlashDrum::Spec::TP, *sys.fc, 260.0, 2e6);
+    drum.setInlet("feed", sys.makeFeed(270.0, 2e6, 100.0));
+    drum.solve();
+
+    double F_out = drum.getOutlet("vapor").totalFlow + drum.getOutlet("liquid").totalFlow;
+    EXPECT_NEAR(F_out, 100.0, 1e-8);
+}
+
+TEST_F(FlowsheetOpsTest, PumpOpDelegatesToUnderlyingUnit) {
+    ComponentDB db(DB3);
+    auto comps = db.get({"PROPANE", "N-BUTANE"});
+    PengRobinson eos(comps);
+    FlashCalculator fc(eos, comps);
+    PumpOp pump(fc, 2e6, 0.75);
+
+    pump.setInlet("in", flashedStream(fc, 250.0, 0.5e6, 50.0, {0.5, 0.5}));
+    pump.solve();
+
+    EXPECT_NEAR(pump.getOutlet("out").P, 2e6, 1.0);
+    EXPECT_GT(pump.shaftPower(), 0.0);
+}
+
+TEST(FlowsheetGraphTest, TopologicalSortSupportsFeedsAndProducts) {
+    FlowsheetGraph graph;
+    graph.addUnit("MIX", std::make_unique<SplitterOp>(std::vector<double>{0.5, 0.5}));
+    graph.addUnit("PUMP", std::make_unique<SplitterOp>(std::vector<double>{0.5, 0.5}));
+
+    // Build a simple DAG with externally supplied streams.
+    graph.connect("FEED", "", "", "MIX", "in");
+    graph.connect("MID", "MIX", "out0", "PUMP", "in");
+    graph.connect("PRODUCT", "PUMP", "out0", "", "");
+
+    auto order = graph.topoSort();
+    ASSERT_EQ(order.size(), 2u);
+    EXPECT_EQ(order[0], "MIX");
+    EXPECT_EQ(order[1], "PUMP");
+}
+
+TEST(FlowsheetGraphTest, DetectsRecycleAndSelectsTearStream) {
+    FlowsheetGraph graph;
+    graph.addUnit("MIX", std::make_unique<SplitterOp>(std::vector<double>{0.2, 0.8}));
+    graph.addUnit("SPLIT", std::make_unique<SplitterOp>(std::vector<double>{0.5, 0.5}));
+
+    graph.connect("MIXOUT", "MIX", "out0", "SPLIT", "in");
+    graph.connect("RECYCLE", "SPLIT", "out1", "MIX", "in");
+
+    auto sccs = graph.findSCCs();
+    ASSERT_EQ(sccs.size(), 1u);
+    EXPECT_EQ(sccs[0].size(), 2u);
+
+    auto tears = graph.selectTearStreams();
+    ASSERT_EQ(tears.size(), 1u);
+    EXPECT_TRUE(tears[0] == "MIXOUT" || tears[0] == "RECYCLE");
+}
+
+class RecycleFlowsheetTest : public ::testing::Test {
+protected:
+    void SetUp() override {
+        ComponentDB db(DB3);
+        comps = db.get({"METHANE", "ETHANE", "PROPANE", "N-BUTANE"});
+        eos = std::make_unique<PengRobinson>(comps);
+        fc = std::make_unique<FlashCalculator>(*eos, comps);
+        z = {0.40, 0.30, 0.20, 0.10};
+    }
+
+    std::vector<Component> comps;
+    std::unique_ptr<PengRobinson> eos;
+    std::unique_ptr<FlashCalculator> fc;
+    std::vector<double> z;
+};
+
+TEST_F(RecycleFlowsheetTest, RecycleSolverConvergesSimpleLoop) {
+    FlowsheetGraph graph;
+    graph.addUnit("MIX", std::make_unique<MixerOp>(*fc, std::vector<std::string>{"fresh", "recycle"}));
+    graph.addUnit("SPLIT", std::make_unique<SplitterOp>(std::vector<double>{0.2, 0.8}));
+
+    graph.connect("FEED", "", "", "MIX", "fresh");
+    graph.connect("RECYCLE", "SPLIT", "out1", "MIX", "recycle");
+    graph.connect("MIXOUT", "MIX", "out", "SPLIT", "in");
+    graph.connect("PRODUCT", "SPLIT", "out0", "", "");
+
+    auto feed = flashedStream(*fc, 260.0, 2e6, 100.0, z);
+    auto guess = flashedStream(*fc, 260.0, 2e6, 100.0, z);
+
+    RecycleSolver solver(graph, RecycleSolver::Options{100, 0.01, 1.0, 1e-6, 1e-6, 1.0});
+    auto result = solver.solve({
+        {"FEED", feed},
+        {"RECYCLE", guess},
+        {"MIXOUT", guess}
+    });
+
+    EXPECT_TRUE(result.converged);
+    EXPECT_NEAR(result.streams.at("PRODUCT").totalFlow, 100.0, 1e-4);
+    EXPECT_NEAR(result.streams.at("RECYCLE").totalFlow, 400.0, 1e-3);
+    EXPECT_NEAR(result.streams.at("MIXOUT").totalFlow, 500.0, 1e-3);
+}
+
+TEST_F(RecycleFlowsheetTest, FlowsheetTopLevelSolvesSimpleRecycle) {
+    Flowsheet fs(comps);
+    fs.addStream("FEED", 260.0, 2e6, 100.0,
+                 {{"METHANE", 0.40}, {"ETHANE", 0.30}, {"PROPANE", 0.20}, {"N-BUTANE", 0.10}});
+    fs.addStream("RECYCLE", 260.0, 2e6, 100.0,
+                 {{"METHANE", 0.40}, {"ETHANE", 0.30}, {"PROPANE", 0.20}, {"N-BUTANE", 0.10}});
+    fs.addStream("MIXOUT", 260.0, 2e6, 100.0,
+                 {{"METHANE", 0.40}, {"ETHANE", 0.30}, {"PROPANE", 0.20}, {"N-BUTANE", 0.10}});
+
+    fs.addUnit("MIX", std::make_unique<MixerOp>(*fc, std::vector<std::string>{"fresh", "recycle"}));
+    fs.addUnit("SPLIT", std::make_unique<SplitterOp>(std::vector<double>{0.2, 0.8}));
+
+    fs.connect("FEED", "", "", "MIX", "fresh");
+    fs.connect("RECYCLE", "SPLIT", "out1", "MIX", "recycle");
+    fs.connect("MIXOUT", "MIX", "out", "SPLIT", "in");
+    fs.connect("PRODUCT", "SPLIT", "out0", "", "");
+
+    EXPECT_TRUE(fs.solve());
+    EXPECT_NEAR(fs.getStream("PRODUCT").totalFlow, 100.0, 1e-4);
+    EXPECT_NEAR(fs.getStream("RECYCLE").totalFlow, 400.0, 1e-3);
+}
+
+TEST_F(RecycleFlowsheetTest, JsonParserBuildsAndSolvesRecycleFlowsheet) {
+    const auto json_path = std::filesystem::temp_directory_path() / "chemsim_phase4_flowsheet.json";
+    std::ofstream out(json_path);
+    out << R"json(
+{
+  "components": ["METHANE", "ETHANE", "PROPANE", "N-BUTANE"],
+  "streams": {
+    "FEED": {
+      "T": 260.0,
+      "P": 2000000.0,
+      "flow": 100.0,
+      "composition": {
+        "METHANE": 0.40,
+        "ETHANE": 0.30,
+        "PROPANE": 0.20,
+        "N-BUTANE": 0.10
+      }
+    },
+    "RECYCLE": {
+      "T": 260.0,
+      "P": 2000000.0,
+      "flow": 100.0,
+      "composition": {
+        "METHANE": 0.40,
+        "ETHANE": 0.30,
+        "PROPANE": 0.20,
+        "N-BUTANE": 0.10
+      }
+    },
+    "MIXOUT": {
+      "T": 260.0,
+      "P": 2000000.0,
+      "flow": 100.0,
+      "composition": {
+        "METHANE": 0.40,
+        "ETHANE": 0.30,
+        "PROPANE": 0.20,
+        "N-BUTANE": 0.10
+      }
+    }
+  },
+  "units": {
+    "MIX": {
+      "type": "Mixer",
+      "inlet_ports": ["fresh", "recycle"]
+    },
+    "SPLIT": {
+      "type": "Splitter",
+      "fractions": [0.2, 0.8]
+    }
+  },
+  "connections": [
+    {"stream": "FEED", "to": "MIX", "to_port": "fresh"},
+    {"stream": "RECYCLE", "from": "SPLIT", "from_port": "out1", "to": "MIX", "to_port": "recycle"},
+    {"stream": "MIXOUT", "from": "MIX", "from_port": "out", "to": "SPLIT", "to_port": "in"},
+    {"stream": "PRODUCT", "from": "SPLIT", "from_port": "out0"}
+  ]
+}
+)json";
+    out.close();
+
+    auto fs = Flowsheet::fromJSON(json_path.string(), DB3);
+    EXPECT_TRUE(fs.solve());
+    EXPECT_NEAR(fs.getStream("PRODUCT").totalFlow, 100.0, 1e-4);
+    EXPECT_NEAR(fs.getStream("RECYCLE").totalFlow, 400.0, 1e-3);
+
+    std::filesystem::remove(json_path);
 }
