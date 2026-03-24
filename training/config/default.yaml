@@ -1,36 +1,37 @@
-# ── Simulator ────────────────────────────────────────────────────────────────
-flowsheet_json: "examples/distillation_recycle.json"
-component_db:   "data/components.json"
-col_unit:       "COL1"
-feed_stream:    "FEED"
+# RL Process Optimizer - Default Training Configuration
 
-# ── Environment ───────────────────────────────────────────────────────────────
-max_steps: 1   # bandit mode — one solve per episode
-
-# ── Reward ────────────────────────────────────────────────────────────────────
-reward:
-  target_purity:       0.85   # METHANE mole fraction in distillate
-  min_distillate_flow: 10.0   # mol/s
-  w_purity:            10.0
-  w_energy:             1.0
-  w_flow:               2.0
-  w_crash:            -20.0
-  purity_reward_type:  "smooth"
-
-# ── Training ──────────────────────────────────────────────────────────────────
-total_timesteps: 500_000
-n_envs:          4
-lr:              3.0e-4
-n_steps:         2048
-batch_size:      64
-n_epochs:        10
-gamma:           0.99
-gae_lambda:      0.95
-clip_range:      0.2
-ent_coef:        0.01     # increase to 0.05 if reward is flat after 20k steps
-
-# ── Logging ───────────────────────────────────────────────────────────────────
-log_dir:        "runs/ppo_baseline"
+# Paths
+component_db: "data/components.json"
+flowsheet_config: "examples/distillation_recycle.json"
+log_dir: "runs/ppo_baseline"
 checkpoint_dir: "checkpoints/ppo_baseline"
-eval_freq:      5_000
-save_freq:      20_000
+
+# Environment
+max_steps: 1  # 1 = bandit mode (single step per episode)
+
+# Reward function configuration
+reward:
+  target_purity: 0.95           # Target mole fraction of light key in distillate
+  min_distillate_flow: 10.0     # Minimum acceptable distillate flow (mol/s)
+  w_purity: 10.0                # Reward weight for purity
+  w_energy: 1.0                 # Penalty weight for energy (per MW reboiler duty)
+  w_flow: 2.0                   # Reward weight for product flow
+  w_crash: -20.0                # Penalty for simulator convergence failure
+  purity_reward_type: "smooth"  # "step" | "smooth" | "exponential"
+
+# PPO Hyperparameters
+total_timesteps: 500_000        # Total training steps
+n_envs: 4                       # Parallel environments
+lr: 3.0e-4                      # Learning rate
+n_steps: 2048                   # Steps per rollout per environment
+batch_size: 64                  # Minibatch size
+n_epochs: 10                    # Epochs per minibatch
+gamma: 0.99                     # Discount factor
+gae_lambda: 0.95                # GAE lambda
+clip_range: 0.2                 # PPO clip range
+ent_coef: 0.01                  # Entropy coefficient (exploration)
+
+# Evaluation and checkpointing
+eval_freq: 5000                 # Evaluate every N steps
+save_freq: 20000                # Checkpoint every N steps
+seed: 42                        # Random seed for reproducibility
