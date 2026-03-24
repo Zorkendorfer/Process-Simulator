@@ -87,6 +87,10 @@ void Flowsheet::connect(const std::string& stream_name,
     graph_.connect(stream_name, from_unit, from_port, to_unit, to_port);
 }
 
+bool Flowsheet::solve() {
+    return solve(RecycleSolver::Options{});
+}
+
 bool Flowsheet::solve(RecycleSolver::Options opts) {
     RecycleSolver solver(graph_, opts);
     auto result = solver.solve(streams_);

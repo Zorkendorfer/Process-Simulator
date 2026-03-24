@@ -16,6 +16,7 @@ find_package(Eigen3 REQUIRED)
 
 # GoogleTest via FetchContent (no git submodule needed for now)
 include(FetchContent)
+set(FETCHCONTENT_UPDATES_DISCONNECTED ON)
 FetchContent_Declare(
   googletest
   GIT_REPOSITORY https://github.com/google/googletest.git
@@ -45,4 +46,13 @@ add_executable(run_tests ${TEST_SOURCES})
 target_link_libraries(run_tests chemsim_core GTest::gtest_main)
 target_compile_definitions(run_tests PRIVATE
     CHEMSIM_DATA_DIR="${CMAKE_SOURCE_DIR}/data")
-add_test(NAME all_tests COMMAND run_tests)
+
+if(WIN32)
+  add_test(
+    NAME all_tests
+    COMMAND ${CMAKE_COMMAND} -E env
+            "PATH=$<TARGET_FILE_DIR:run_tests>;C:/msys64/ucrt64/bin;$ENV{PATH}"
+            $<TARGET_FILE:run_tests>)
+else()
+  add_test(NAME all_tests COMMAND run_tests)
+endif()

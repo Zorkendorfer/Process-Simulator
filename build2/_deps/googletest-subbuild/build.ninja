@@ -39,7 +39,7 @@ cmake_ninja_workdir = C$:\Users\j.kalnius\Documents\Process$ Simulator\build2\_d
 #############################################
 # Utility command for googletest-populate
 
-build googletest-populate: phony CMakeFiles\googletest-populate CMakeFiles\googletest-populate-complete googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update
+build googletest-populate: phony CMakeFiles\googletest-populate CMakeFiles\googletest-populate-complete googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch_disconnected googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update_disconnected
 
 
 #############################################
@@ -74,7 +74,7 @@ build CMakeFiles\googletest-populate | ${cmake_ninja_workdir}CMakeFiles\googlete
 #############################################
 # Custom command for CMakeFiles\googletest-populate-complete
 
-build CMakeFiles\googletest-populate-complete googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done | ${cmake_ninja_workdir}CMakeFiles\googletest-populate-complete ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test
+build CMakeFiles\googletest-populate-complete googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done | ${cmake_ninja_workdir}CMakeFiles\googletest-populate-complete ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-done: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-mkdir googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update_disconnected googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch_disconnected googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-install googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-test
   COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\j.kalnius\Documents\Process Simulator\build2\_deps\googletest-subbuild" && C:\msys64\ucrt64\bin\cmake.exe -E make_directory "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/CMakeFiles" && C:\msys64\ucrt64\bin\cmake.exe -E touch "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete" && C:\msys64\ucrt64\bin\cmake.exe -E touch "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done""
   DESC = Completed 'googletest-populate'
   restat = 1
@@ -92,7 +92,7 @@ build googletest-populate-prefix\src\googletest-populate-stamp\googletest-popula
 #############################################
 # Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure: CUSTOM_COMMAND googletest-populate-prefix\tmp\googletest-populate-cfgcmd.txt googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch
+build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-configure: CUSTOM_COMMAND googletest-populate-prefix\tmp\googletest-populate-cfgcmd.txt googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch_disconnected
   COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\j.kalnius\Documents\Process Simulator\build2\_deps\googletest-build" && C:\msys64\ucrt64\bin\cmake.exe -E echo_append && C:\msys64\ucrt64\bin\cmake.exe -E touch "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure""
   DESC = No configure step for 'googletest-populate'
   restat = 1
@@ -127,11 +127,11 @@ build googletest-populate-prefix\src\googletest-populate-stamp\googletest-popula
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch
+# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch_disconnected
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch-info.txt googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\j.kalnius\Documents\Process Simulator\build2\_deps\googletest-subbuild" && C:\msys64\ucrt64\bin\cmake.exe -E echo_append && C:\msys64\ucrt64\bin\cmake.exe -E touch "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch""
-  DESC = No patch step for 'googletest-populate'
+build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch_disconnected | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch_disconnected: CUSTOM_COMMAND googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-patch-info.txt googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update_disconnected
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\j.kalnius\Documents\Process Simulator\build2\_deps\googletest-subbuild" && C:\msys64\ucrt64\bin\cmake.exe -E echo_append && C:\msys64\ucrt64\bin\cmake.exe -E touch "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch_disconnected""
+  DESC = No patch_disconnected step for 'googletest-populate'
   pool = console
   restat = 1
 
@@ -146,12 +146,13 @@ build googletest-populate-prefix\src\googletest-populate-stamp\googletest-popula
 
 
 #############################################
-# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update
+# Custom command for googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update_disconnected
 
-build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update: CUSTOM_COMMAND googletest-populate-prefix\tmp\googletest-populate-gitupdate.cmake googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update-info.txt googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download
-  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\j.kalnius\Documents\Process Simulator\build2\_deps\googletest-src" && C:\msys64\ucrt64\bin\cmake.exe -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitupdate.cmake""
-  DESC = Performing update step for 'googletest-populate'
+build googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update_disconnected | ${cmake_ninja_workdir}googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update_disconnected: CUSTOM_COMMAND googletest-populate-prefix\tmp\googletest-populate-gitupdate.cmake googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-update-info.txt googletest-populate-prefix\src\googletest-populate-stamp\googletest-populate-download
+  COMMAND = C:\Windows\system32\cmd.exe /C "cd /D "C:\Users\j.kalnius\Documents\Process Simulator\build2\_deps\googletest-src" && C:\msys64\ucrt64\bin\cmake.exe -Dcan_fetch=NO -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/tmp/googletest-populate-gitupdate.cmake" && C:\msys64\ucrt64\bin\cmake.exe -E touch "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update_disconnected""
+  DESC = Performing disconnected update step for 'googletest-populate'
   pool = console
+  restat = 1
 
 # =============================================================================
 # Target aliases.

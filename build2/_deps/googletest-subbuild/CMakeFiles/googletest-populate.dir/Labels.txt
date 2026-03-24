@@ -9,6 +9,6 @@ C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/
 C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download.rule
 C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install.rule
 C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir.rule
-C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch.rule
+C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch_disconnected.rule
 C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test.rule
-C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update.rule
+C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update_disconnected.rule

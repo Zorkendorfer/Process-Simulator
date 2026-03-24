@@ -26,13 +26,13 @@
 			"file" : "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir.rule"
 		},
 		{
-			"file" : "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch.rule"
+			"file" : "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch_disconnected.rule"
 		},
 		{
 			"file" : "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test.rule"
 		},
 		{
-			"file" : "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update.rule"
+			"file" : "C:/Users/j.kalnius/Documents/Process Simulator/build2/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update_disconnected.rule"
 		}
 	],
 	"target" : 

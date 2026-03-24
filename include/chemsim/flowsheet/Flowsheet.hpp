@@ -34,7 +34,8 @@ public:
                  const std::string& from_unit, const std::string& from_port,
                  const std::string& to_unit,   const std::string& to_port);
 
-    bool solve(RecycleSolver::Options opts = {});
+    bool solve();
+    bool solve(RecycleSolver::Options opts);
 
     const Stream& getStream(const std::string& name) const;
     Stream& getStream(const std::string& name);

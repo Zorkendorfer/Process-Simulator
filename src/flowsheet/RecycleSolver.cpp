@@ -6,6 +6,9 @@
 
 namespace chemsim {
 
+RecycleSolver::RecycleSolver(const FlowsheetGraph& graph)
+    : RecycleSolver(graph, Options{}) {}
+
 RecycleSolver::RecycleSolver(const FlowsheetGraph& graph, Options opts)
     : graph_(graph), opts_(opts) {
     if (opts_.maxIter <= 0)

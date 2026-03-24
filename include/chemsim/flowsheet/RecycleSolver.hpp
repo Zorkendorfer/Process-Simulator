@@ -24,7 +24,8 @@ public:
         double relaxation{1.0};
     };
 
-    explicit RecycleSolver(const FlowsheetGraph& graph, Options opts = {});
+    explicit RecycleSolver(const FlowsheetGraph& graph);
+    RecycleSolver(const FlowsheetGraph& graph, Options opts);
 
     RecycleSolveResult solve(const std::map<std::string, Stream>& initial_streams) const;
 
