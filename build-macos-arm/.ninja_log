@@ -1,0 +1,24 @@
+# ninja log v7
+2	1595	1774368530874045541	CMakeFiles/chemsim_core.dir/src/flowsheet/RecycleSolver.cpp.o	a16fa4b04f523d8
+2	1815	1774368530873731749	CMakeFiles/chemsim_core.dir/src/flowsheet/FlowsheetGraph.cpp.o	3c9adb3d903c35a8
+2	3595	1774368530873219292	CMakeFiles/chemsim_core.dir/src/flowsheet/Flowsheet.cpp.o	a4688bdfe978da2e
+1597	3721	1774368532468305224	CMakeFiles/chemsim_core.dir/src/ops/Compressor.cpp.o	99aa0c0deae96adb
+3	3918	1774368530874409832	CMakeFiles/chemsim_core.dir/src/io/FlowsheetParser.cpp.o	ebfe36768f003850
+1815	4080	1774368532686324516	CMakeFiles/chemsim_core.dir/src/ops/DistillationColumn.cpp.o	85659c2c81783188
+3596	5909	1774368534467427080	CMakeFiles/chemsim_core.dir/src/ops/FlashDrum.cpp.o	338fc46f0510343e
+3721	5932	1774368534592866916	CMakeFiles/chemsim_core.dir/src/ops/HeatExchanger.cpp.o	6766199e420bf8f6
+3918	6098	1774368534789950866	CMakeFiles/chemsim_core.dir/src/ops/Pump.cpp.o	246cdfdef23636df
+4080	6423	1774368534951437822	CMakeFiles/chemsim_core.dir/src/ops/Reactor.cpp.o	fec5c789c10da086
+5909	8309	1774368536781017167	CMakeFiles/chemsim_core.dir/src/thermo/FlashCalculator.cpp.o	5263298500bacd9
+5932	8824	1774368536803527763	CMakeFiles/chemsim_core.dir/src/thermo/PengRobinson.cpp.o	ce393fc527781663
+8824	9247	1774368539696038434	libchemsim_core.a	d9db343c72820a82
+6423	10151	1774368537294723844	CMakeFiles/run_tests.dir/tests/test_phase1.cpp.o	84c0c1d53e219b38
+8310	11885	1774368539181225497	CMakeFiles/run_tests.dir/tests/test_phase2.cpp.o	7e121d21cae51a83
+9247	13163	1774368540118256864	CMakeFiles/run_tests.dir/tests/test_phase3.cpp.o	1f19901a286fdbdd
+6098	13215	1774368536969645633	CMakeFiles/chemsim.dir/python/chemsim.cpp.o	484cb2f126f02a11
+13215	13425	1774368544086852933	chemsim.cpython-312-darwin.so	ad16ac03e3b8b861
+10151	13721	1774368541022829863	CMakeFiles/run_tests.dir/tests/test_phase5.cpp.o	9f7b422e2ec62d84
+13721	13911	1774368544592437278	run_tests	7cca69a4b9f4a679
+5	730	1774370534258961953	build.ninja	b9ddd5758e7e7d79
+5	730	1774370534258961953	/Users/jonas/ChemSim/Process-Simulator/build-macos-arm/cmake_install.cmake	b9ddd5758e7e7d79
+5	730	1774370534258961953	/Users/jonas/ChemSim/Process-Simulator/build-macos-arm/CTestTestfile.cmake	b9ddd5758e7e7d79

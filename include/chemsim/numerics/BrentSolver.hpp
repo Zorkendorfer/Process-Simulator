@@ -2,6 +2,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <string>
+#include <utility>
 
 namespace chemsim {
 
@@ -21,7 +22,12 @@ public:
 
     // Solve f(x)=0 on [a,b]. Throws if bracket is invalid or no convergence.
     template<typename F>
-    static Result solve(F&& f, double a, double b, Options opts = {}) {
+    static Result solve(F&& f, double a, double b) {
+        return solve(std::forward<F>(f), a, b, Options{});
+    }
+
+    template<typename F>
+    static Result solve(F&& f, double a, double b, Options opts) {
         double fa = f(a);
         double fb = f(b);
 

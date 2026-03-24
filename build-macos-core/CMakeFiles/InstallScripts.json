@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/jonas/ChemSim/Process-Simulator/build-macos-core/cmake_install.cmake",
+		"/Users/jonas/ChemSim/Process-Simulator/build-macos-core/_deps/nlohmann_json-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/jonas/ChemSim/Process-Simulator/build-macos-arm/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

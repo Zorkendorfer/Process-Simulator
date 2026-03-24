@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/jonas/ChemSim/Process-Simulator/build-macos-verify/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

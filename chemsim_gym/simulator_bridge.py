@@ -1,23 +1,12 @@
-"""Thin wrapper around the pybind11 chemsim module for the RL environment."""
+"""Thin wrapper around the chemsim module for the RL environment."""
 
 from __future__ import annotations
-import numpy as np
 from dataclasses import dataclass
 from typing import Optional
-import sys
-import os
 
-# Allow running from repo root without installing
-_repo_root = os.path.join(os.path.dirname(__file__), "..")
-sys.path.insert(0, os.path.join(_repo_root, "build"))
+import numpy as np
 
-# On Windows, the MinGW runtime DLLs must be findable.
-# Add the MSYS2 MinGW64 bin directory if it exists.
-_mingw_bin = r"C:/msys64/mingw64/bin"
-if os.name == "nt" and os.path.isdir(_mingw_bin):
-    os.add_dll_directory(_mingw_bin)
-
-import chemsim  # pybind11 module
+import chemsim
 
 
 @dataclass
@@ -81,12 +70,7 @@ class SimulatorBridge:
     # ── Public API ────────────────────────────────────────────────────────────
 
     def reset(self) -> SimResult:
-        """Reload flowsheet from JSON and solve at nominal conditions.
-
-        Full reload (not just stream reset) guarantees determinism because
-        set_param changes to unit ops (reflux ratio, distillate frac) are
-        also reset — they are not touched by reset_to_base().
-        """
+        """Reload flowsheet from JSON and solve at nominal conditions."""
         self.flowsheet = chemsim.Flowsheet.from_json(self._json, self._db)
         try:
             ok = self.flowsheet.solve()

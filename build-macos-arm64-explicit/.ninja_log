@@ -1,0 +1,20 @@
+# ninja log v7
+2	1527	1774368633573981925	CMakeFiles/chemsim_core.dir/src/flowsheet/RecycleSolver.cpp.o	7fdaa36386e4270d
+2	1815	1774368633573675425	CMakeFiles/chemsim_core.dir/src/flowsheet/FlowsheetGraph.cpp.o	3990fbfaaad9e8fd
+1529	3626	1774368635100829230	CMakeFiles/chemsim_core.dir/src/ops/Compressor.cpp.o	1194d7d4f267633a
+2	3665	1774368633573136218	CMakeFiles/chemsim_core.dir/src/flowsheet/Flowsheet.cpp.o	4b5c0653a3718d8e
+3	4020	1774368633574265508	CMakeFiles/chemsim_core.dir/src/io/FlowsheetParser.cpp.o	a35752fdaf63fe41
+1815	4040	1774368635386891370	CMakeFiles/chemsim_core.dir/src/ops/DistillationColumn.cpp.o	12aa3514229c1513
+3626	5690	1774368637198022109	CMakeFiles/chemsim_core.dir/src/ops/FlashDrum.cpp.o	5f56ea61e3192388
+3665	5744	1774368637236457567	CMakeFiles/chemsim_core.dir/src/ops/HeatExchanger.cpp.o	cad259b40c42ceaf
+4020	6091	1774368637591169673	CMakeFiles/chemsim_core.dir/src/ops/Pump.cpp.o	75f17375537bb3ee
+4040	6194	1774368637611401567	CMakeFiles/chemsim_core.dir/src/ops/Reactor.cpp.o	b2fd28adaeecb1c9
+5690	8004	1774368639261846026	CMakeFiles/chemsim_core.dir/src/thermo/FlashCalculator.cpp.o	ca4d6464c04ac407
+5744	8718	1774368639315965966	CMakeFiles/chemsim_core.dir/src/thermo/PengRobinson.cpp.o	33f4367782c23431
+8718	8946	1774368642289748415	libchemsim_core.a	d9db343c72820a82
+6194	10236	1774368639765802842	CMakeFiles/run_tests.dir/tests/test_phase1.cpp.o	3110217ec177caf0
+8004	11747	1774368641575615624	CMakeFiles/run_tests.dir/tests/test_phase2.cpp.o	2acbc0136ba42437
+8946	12963	1774368642517110704	CMakeFiles/run_tests.dir/tests/test_phase3.cpp.o	d5836103a2e1d9d7
+6091	13403	1774368639662957498	CMakeFiles/chemsim.dir/python/chemsim.cpp.o	282714a784f5d201
+13404	13612	1774368646975361796	chemsim.cpython-312-darwin.so	f039eacf287d8f16
+10236	13860	1774368643807579688	CMakeFiles/run_tests.dir/tests/test_phase5.cpp.o	c33d56b25e30bcd

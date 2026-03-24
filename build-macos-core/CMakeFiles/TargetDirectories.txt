@@ -1,0 +1,13 @@
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/CMakeFiles/chemsim_core.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/CMakeFiles/edit_cache.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/CMakeFiles/rebuild_cache.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/CMakeFiles/list_install_components.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/CMakeFiles/install.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/CMakeFiles/install/local.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/CMakeFiles/install/strip.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/_deps/nlohmann_json-build/CMakeFiles/edit_cache.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/_deps/nlohmann_json-build/CMakeFiles/rebuild_cache.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/_deps/nlohmann_json-build/CMakeFiles/list_install_components.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/_deps/nlohmann_json-build/CMakeFiles/install.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/_deps/nlohmann_json-build/CMakeFiles/install/local.dir
+/Users/jonas/ChemSim/Process-Simulator/build-macos-core/_deps/nlohmann_json-build/CMakeFiles/install/strip.dir

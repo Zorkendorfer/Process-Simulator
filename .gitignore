@@ -1,6 +1,10 @@
 # Build output — never commit
 build/
 build2/
+build-macos/
+dist/
+*.egg-info/
+.venv/
 
 # Python bytecode
 __pycache__/
