@@ -1,0 +1,12 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/j.kalnius/Documents/Process Simulator/build/cmake_install.cmake",
+		"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-build/cmake_install.cmake",
+		"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-build/googlemock/cmake_install.cmake",
+		"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-build/googletest/cmake_install.cmake",
+		"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-build/cmake_install.cmake",
+		"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/pybind11-build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

@@ -14,6 +14,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra")
 # ── Dependencies ──────────────────────────────────────────────────────────────
 find_package(Eigen3 REQUIRED)
 find_package(Python3 COMPONENTS Interpreter Development.Module)
+find_package(Qt6 COMPONENTS Widgets Svg QUIET)
 
 # GoogleTest via FetchContent (no git submodule needed for now)
 include(FetchContent)
@@ -43,6 +44,7 @@ FetchContent_MakeAvailable(pybind11)
 
 # ── Core library ──────────────────────────────────────────────────────────────
 file(GLOB_RECURSE CHEMSIM_SOURCES "src/**/*.cpp")
+list(FILTER CHEMSIM_SOURCES EXCLUDE REGEX ".*/src/gui/.*\\.cpp$")
 add_library(chemsim_core STATIC ${CHEMSIM_SOURCES})
 target_include_directories(chemsim_core PUBLIC include)
 target_link_libraries(chemsim_core PUBLIC Eigen3::Eigen nlohmann_json::nlohmann_json)
@@ -51,6 +53,17 @@ pybind11_add_module(chemsim MODULE python/chemsim.cpp)
 target_link_libraries(chemsim PRIVATE chemsim_core)
 target_compile_definitions(chemsim PRIVATE
     CHEMSIM_DATA_DIR="${CMAKE_SOURCE_DIR}/data")
+
+if(Qt6_FOUND)
+  add_executable(chemsim_gui
+    src/gui/main.cpp
+    src/gui/MainWindow.cpp
+    src/gui/FlowsheetCanvas.cpp)
+  target_include_directories(chemsim_gui PRIVATE src/gui)
+  target_link_libraries(chemsim_gui PRIVATE chemsim_core Qt6::Widgets Qt6::Svg)
+  target_compile_definitions(chemsim_gui PRIVATE
+      CHEMSIM_DATA_DIR="${CMAKE_SOURCE_DIR}/data")
+endif()
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 enable_testing()

@@ -38,6 +38,9 @@ PYBIND11_MODULE(chemsim, m) {
         .def("export_results", &Flowsheet::exportResults)
         .def("results_as_json",
              [](const Flowsheet& fs) { return fs.resultsAsJson().dump(2); })
-        .def_static("from_json", &Flowsheet::fromJSON,
+        .def_static("from_json",
+                    [](const std::string& json_path, const std::string& component_db_path) {
+                        return Flowsheet::fromJSONUnique(json_path, component_db_path);
+                    },
                     py::arg("json_path"), py::arg("component_db_path"));
 }

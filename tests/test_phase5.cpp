@@ -97,3 +97,12 @@ TEST(FlowsheetPolish, ExportResultsWritesJsonFile) {
     in.close();
     std::filesystem::remove(path);
 }
+
+TEST(FlowsheetPolish, UniqueJsonConstructionSolvesRecycleFlowsheet) {
+    auto fs = Flowsheet::fromJSONUnique("examples/simple_recycle.json", DB5);
+
+    ASSERT_TRUE(fs);
+    EXPECT_TRUE(fs->solve());
+    EXPECT_NEAR(fs->getStream("PRODUCT").totalFlow, 100.0, 1e-4);
+    EXPECT_NEAR(fs->getStream("RECYCLE").totalFlow, 400.0, 1e-3);
+}

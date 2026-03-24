@@ -214,7 +214,12 @@ std::map<std::string, Stream> FlowsheetGraph::evaluate(
             }
         }
 
-        op.solve();
+        try {
+            op.solve();
+        } catch (const std::exception& ex) {
+            throw std::runtime_error(
+                "FlowsheetGraph::evaluate: unit '" + uid + "' failed: " + ex.what());
+        }
 
         // Collect outlets
         for (const auto& port : op.outletPorts()) {

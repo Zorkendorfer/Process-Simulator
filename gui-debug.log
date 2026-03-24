@@ -1,0 +1,64 @@
+Load Example: begin
+Load Example: parsed
+Refresh: begin stream tree
+Refresh: summary
+Refresh: done
+Load Example: refreshed
+Solve: begin
+Solve: exception
+Solve error:
+vector::reserve
+Load Example: begin
+Load Example: parsed
+Refresh: begin stream tree
+Refresh: summary
+Refresh: done
+Load Example: refreshed
+Solve: begin
+Solve: exception
+Solve error:
+vector::reserve
+Load Example: begin
+Load Example: parsed
+Refresh: begin stream tree
+Refresh: summary
+Refresh: done
+Load Example: refreshed
+Solve: begin
+Solve: exception
+Solve error:
+vector::reserve
+Load Example: begin
+Load Example: parsed
+Refresh: begin stream tree
+Refresh: summary
+Refresh: done
+Load Example: refreshed
+Solve: begin
+Solve: exception
+Solve error:
+vector::reserve
+Load Example: begin
+Load Example: parsed
+Refresh: begin stream tree
+Refresh: summary
+Refresh: done
+Load Example: refreshed
+Solve: begin
+Solve: solved
+Refresh: begin stream tree
+Refresh: summary
+Refresh: done
+Solve: refreshed
+Load Example: begin
+Load Example: parsed
+Refresh: begin stream tree
+Refresh: summary
+Refresh: done
+Load Example: refreshed
+Solve: begin
+Solve: solved
+Refresh: begin stream tree
+Refresh: summary
+Refresh: done
+Solve: refreshed

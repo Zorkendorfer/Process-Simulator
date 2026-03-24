@@ -17,6 +17,9 @@ FlashCalculator::FlashCalculator(const EOS& eos,
 // ─── Wilson K-value estimate ──────────────────────────────────────────────────
 // K_i = (Pc_i/P) * exp(5.373*(1+ω_i)*(1 - Tc_i/T))
 std::vector<double> FlashCalculator::wilsonK(double T, double P) const {
+    if (comps_.empty() || comps_.size() > 1000) {
+        throw std::runtime_error("FlashCalculator::wilsonK: invalid component set");
+    }
     std::vector<double> K;
     K.reserve(comps_.size());
     for (const auto& c : comps_)

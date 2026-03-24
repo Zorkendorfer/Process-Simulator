@@ -67,8 +67,8 @@ public:
                    int maxIter = 200) const;
 
 private:
-    const EOS&                    eos_;
-    const std::vector<Component>& comps_;
+    const EOS&               eos_;
+    std::vector<Component>   comps_;
 
     // Wilson K-value estimate
     std::vector<double> wilsonK(double T, double P) const;

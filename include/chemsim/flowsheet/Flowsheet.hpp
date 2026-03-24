@@ -55,6 +55,8 @@ public:
 
     static Flowsheet fromJSON(const std::string& json_path,
                               const std::string& component_db_path);
+    static std::unique_ptr<Flowsheet> fromJSONUnique(const std::string& json_path,
+                                                     const std::string& component_db_path);
 
 private:
     std::vector<Component> components_;

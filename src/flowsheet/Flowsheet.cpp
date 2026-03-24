@@ -211,4 +211,9 @@ Flowsheet Flowsheet::fromJSON(const std::string& json_path,
     return FlowsheetParser::parseFile(json_path, component_db_path);
 }
 
+std::unique_ptr<Flowsheet> Flowsheet::fromJSONUnique(const std::string& json_path,
+                                                     const std::string& component_db_path) {
+    return FlowsheetParser::parseFileUnique(json_path, component_db_path);
+}
+
 } // namespace chemsim

@@ -1,0 +1,21 @@
+# ninja log v7
+1	99	7960435541399003	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	bc9d9fb490a1ec01
+1	99	7960435541399003	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-mkdir	bc9d9fb490a1ec01
+99	4632	7960435586719032	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	4a7f78670fb8d018
+99	4632	7960435586719032	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-download	4a7f78670fb8d018
+4633	4831	7960435588720766	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update_disconnected	56f01412d7093169
+4633	4831	7960435588720766	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-update_disconnected	56f01412d7093169
+4831	4930	7960435589702508	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch_disconnected	9a2961c716d0d521
+4831	4930	7960435589702508	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-patch_disconnected	9a2961c716d0d521
+4930	5130	7960435591704412	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	955795e0780d7584
+4930	5130	7960435591704412	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-configure	955795e0780d7584
+5130	5299	7960435593392908	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	44a9522bd7c92be0
+5130	5299	7960435593392908	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-build	44a9522bd7c92be0
+5299	5511	7960435595428931	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	1f779095692d1759
+5299	5511	7960435595428931	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-install	1f779095692d1759
+5511	5714	7960435597536556	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	ec20e49ffdd79b2
+5511	5714	7960435597536556	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-test	ec20e49ffdd79b2
+5714	5906	7960435599473507	CMakeFiles/googletest-populate-complete	2fbbb3ab9ed85c14
+5714	5906	7960435599473507	googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	2fbbb3ab9ed85c14
+5714	5906	7960435599473507	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate-complete	2fbbb3ab9ed85c14
+5714	5906	7960435599473507	C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-subbuild/googletest-populate-prefix/src/googletest-populate-stamp/googletest-populate-done	2fbbb3ab9ed85c14

@@ -31,7 +31,7 @@ public:
                             bool liquid) const override;
 
 private:
-    const std::vector<Component>& comps_;
+    std::vector<Component> comps_;
     Eigen::MatrixXd kij_;
 
     struct PRParams {

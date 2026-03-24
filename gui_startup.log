@@ -1,0 +1,150 @@
+qt.core.plugin.factoryloader: checking directory path "C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/platforms" ...
+qt.core.plugin.factoryloader: looking at "qwindows.dll"
+qt.core.plugin.loader: Found metadata in lib C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/platforms/qwindows.dll, metadata=
+{
+    "IID": "org.qt-project.Qt.QPA.QPlatformIntegrationFactoryInterface.5.3",
+    "MetaData": {
+        "Keys": [
+            "windows"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QWindowsIntegrationPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("windows")
+qt.core.library: "C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/platforms/qwindows.dll" loaded library
+qt.core.plugin.factoryloader: checking directory path "C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/platformthemes" ...
+qt.core.plugin.factoryloader: checking directory path "C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/styles" ...
+qt.core.plugin.factoryloader: looking at "qmodernwindowsstyle.dll"
+qt.core.plugin.loader: Found metadata in lib C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/styles/qmodernwindowsstyle.dll, metadata=
+{
+    "IID": "org.qt-project.Qt.QStyleFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "windowsvista",
+            "windows11"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QModernWindowsStylePlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("windowsvista", "windows11")
+qt.core.library: "C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/styles/qmodernwindowsstyle.dll" loaded library
+qt.core.plugin.factoryloader: checking directory path "C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/iconengines" ...
+qt.core.plugin.factoryloader: looking at "qsvgicon.dll"
+qt.core.plugin.loader: Found metadata in lib C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/iconengines/qsvgicon.dll, metadata=
+{
+    "IID": "org.qt-project.Qt.QIconEngineFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "svg",
+            "svgz",
+            "svg.gz"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QSvgIconPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("svg", "svgz", "svg.gz")
+qt.core.plugin.factoryloader: checking directory path "C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/imageformats" ...
+qt.core.plugin.factoryloader: looking at "qgif.dll"
+qt.core.plugin.loader: Found metadata in lib C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/imageformats/qgif.dll, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "gif"
+        ],
+        "MimeTypes": [
+            "image/gif"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QGifPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("gif")
+qt.core.plugin.factoryloader: looking at "qico.dll"
+qt.core.plugin.loader: Found metadata in lib C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/imageformats/qico.dll, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "ico",
+            "cur"
+        ],
+        "MimeTypes": [
+            "image/vnd.microsoft.icon",
+            "image/vnd.microsoft.icon"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QICOPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("ico", "cur")
+qt.core.plugin.factoryloader: looking at "qjpeg.dll"
+qt.core.plugin.loader: Found metadata in lib C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/imageformats/qjpeg.dll, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "jpg",
+            "jpeg",
+            "jfif"
+        ],
+        "MimeTypes": [
+            "image/jpeg",
+            "image/jpeg",
+            "image/jpeg"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QJpegPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("jpg", "jpeg", "jfif")
+qt.core.plugin.factoryloader: looking at "qsvg.dll"
+qt.core.plugin.loader: Found metadata in lib C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/imageformats/qsvg.dll, metadata=
+{
+    "IID": "org.qt-project.Qt.QImageIOHandlerFactoryInterface",
+    "MetaData": {
+        "Keys": [
+            "svg",
+            "svgz"
+        ],
+        "MimeTypes": [
+            "image/svg+xml",
+            "image/svg+xml-compressed"
+        ]
+    },
+    "archlevel": 2,
+    "className": "QSvgPlugin",
+    "debug": false,
+    "version": 395776
+}
+
+
+qt.core.plugin.factoryloader: Got keys from plugin meta data QList("svg", "svgz")
+qt.core.plugin.factoryloader: checking directory path "C:/Users/j.kalnius/Documents/Process Simulator/build-mingw64/accessible" ...
