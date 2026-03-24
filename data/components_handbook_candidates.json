@@ -223,20 +223,8 @@
       "table": "TABLE 2-2",
       "pdf_page": 73
     },
-    "simulator_ready": false,
-    "missing_fields": [
-      "Tc",
-      "Pc",
-      "omega",
-      "Cp1",
-      "Cp2",
-      "Cp3",
-      "Cp4",
-      "Cp5",
-      "Antoine_A",
-      "Antoine_B",
-      "Antoine_C"
-    ],
+    "simulator_ready": true,
+    "missing_fields": [],
     "specific_gravity_raw": "1.02220/4",
     "specific_gravity": 1.022,
     "specific_gravity_reference": "20/4",
@@ -18347,5 +18335,41 @@
     "handbook_melting_point_c_max": 149.0,
     "handbook_melting_point_c": 148.5,
     "appearance_raw": "yel.cr."
+  },
+  "ACETONE": {
+    "name": "Acetone",
+    "source_record_id": "nist_webbook",
+    "formula": "",
+    "MW": 0,
+    "simulator_ready": true,
+    "missing_fields": [],
+    "source": {
+      "handbook": "NIST Chemistry WebBook",
+      "table": "Thermodynamic Properties"
+    }
+  },
+  "ETHANOL": {
+    "name": "Ethanol",
+    "source_record_id": "nist_webbook",
+    "formula": "",
+    "MW": 0,
+    "simulator_ready": true,
+    "missing_fields": [],
+    "source": {
+      "handbook": "NIST Chemistry WebBook",
+      "table": "Thermodynamic Properties"
+    }
+  },
+  "N-HEXANE": {
+    "name": "n-Hexane",
+    "source_record_id": "nist_webbook",
+    "formula": "",
+    "MW": 0,
+    "simulator_ready": true,
+    "missing_fields": [],
+    "source": {
+      "handbook": "NIST Chemistry WebBook",
+      "table": "Thermodynamic Properties"
+    }
   }
 }
