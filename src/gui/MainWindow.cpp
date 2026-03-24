@@ -170,6 +170,9 @@ void MainWindow::buildChrome() {
     });
 
     canvas_ = new FlowsheetCanvas(this);
+    canvas_->setSelectionChangedCallback([this](const QString& text) {
+        showInspectorText(text);
+    });
     canvas_->populateDemoDiagram();
     setCentralWidget(canvas_);
 
@@ -184,6 +187,44 @@ void MainWindow::buildChrome() {
     streamTree_ = new QTreeWidget(right_split);
     streamTree_->setHeaderLabels({"Stream", "Flow (mol/s)", "Phase"});
     streamTree_->header()->setSectionResizeMode(QHeaderView::Stretch);
+    connect(streamTree_, &QTreeWidget::itemSelectionChanged, this, [this]() {
+        if (!flowsheet_) {
+            return;
+        }
+        const auto items = streamTree_->selectedItems();
+        if (items.isEmpty()) {
+            return;
+        }
+
+        const std::string stream_name = items.front()->text(0).toStdString();
+        const auto& stream = flowsheet_->getStream(stream_name);
+        QString details =
+            QString("Stream\n"
+                    "------\n"
+                    "Name: %1\n"
+                    "Flow: %2 mol/s\n"
+                    "T: %3 K\n"
+                    "P: %4 Pa\n"
+                    "Phase: %5\n"
+                    "Beta: %6\n")
+                .arg(items.front()->text(0))
+                .arg(stream.totalFlow, 0, 'f', 3)
+                .arg(stream.T, 0, 'f', 3)
+                .arg(stream.P, 0, 'f', 0)
+                .arg(items.front()->text(2))
+                .arg(stream.vaporFraction, 0, 'f', 4);
+
+        if (!stream.z.empty()) {
+            details += "\nComposition (z)\n";
+            for (std::size_t i = 0; i < stream.z.size(); ++i) {
+                const auto& comp = flowsheet_->components().at(i);
+                details += QString("  %1 = %2\n")
+                               .arg(QString::fromStdString(comp.id))
+                               .arg(stream.z[i], 0, 'f', 4);
+            }
+        }
+        showInspectorText(details);
+    });
 
     inspector_ = new QTextEdit(right_split);
     inspector_->setReadOnly(true);
@@ -221,7 +262,7 @@ void MainWindow::loadExampleFlowsheet() {
 void MainWindow::refreshViews() {
     streamTree_->clear();
     if (!flowsheet_) {
-        inspector_->setPlainText("No flowsheet loaded.");
+        showInspectorText("No flowsheet loaded.");
         console_->setPlainText(
             "ChemSim Studio desktop shell\n"
             "Aspen/DWSIM-inspired workspace scaffold\n\n"
@@ -242,7 +283,7 @@ void MainWindow::refreshViews() {
     }
 
     appendGuiLog("Refresh: summary");
-    inspector_->setPlainText(QString::fromStdString(flowsheet_->summary()));
+    showInspectorText(QString::fromStdString(flowsheet_->summary()));
     console_->setPlainText(
         "ChemSim Studio desktop shell\n"
         "Design direction: Aspen/DWSIM-inspired process workspace\n"
@@ -250,4 +291,8 @@ void MainWindow::refreshViews() {
         "Use Solve to run the recycle loop.\n"
         "Use Export Results to write the solved JSON report.");
     appendGuiLog("Refresh: done");
+}
+
+void MainWindow::showInspectorText(const QString& text) {
+    inspector_->setPlainText(text);
 }

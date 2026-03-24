@@ -16,6 +16,7 @@ private:
     void buildChrome();
     void loadExampleFlowsheet();
     void refreshViews();
+    void showInspectorText(const QString& text);
 
     FlowsheetCanvas* canvas_{};
     QListWidget* palette_{};
