@@ -1,0 +1,23 @@
+# Build output — never commit
+build/
+build2/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Compiled Python extension
+*.so
+*.dll
+
+# IDE / OS
+.vscode/settings.json
+.DS_Store
+Thumbs.db
+
+# Training artefacts (large, not source)
+runs/
+checkpoints/
+*.log
