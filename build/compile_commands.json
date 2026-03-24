@@ -79,6 +79,24 @@
 },
 {
   "directory": "C:/Users/j.kalnius/Documents/Process Simulator/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DCHEMSIM_DATA_DIR=\"\\\"C:/Users/j.kalnius/Documents/Process Simulator/data\\\"\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -DWINVER=0x0A00 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN32_WINNT=0x0A00 -D_WIN64 -I\"C:/Users/j.kalnius/Documents/Process Simulator/src/gui\" -I\"C:/Users/j.kalnius/Documents/Process Simulator/include\" -I\"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include\" -isystem C:/msys64/ucrt64/include/eigen3 -isystem C:/msys64/mingw64/include/qt6/QtWidgets -isystem C:/msys64/mingw64/include/qt6 -isystem C:/msys64/mingw64/include/qt6/QtCore -isystem C:/msys64/mingw64/share/qt6/mkspecs/win32-g++ -isystem C:/msys64/mingw64/include/qt6/QtGui -isystem C:/msys64/mingw64/include/qt6/QtSvg -g -O0 -Wall -Wextra -std=gnu++17 -o CMakeFiles\\chemsim_gui.dir\\src\\gui\\main.cpp.obj -c \"C:\\Users\\j.kalnius\\Documents\\Process Simulator\\src\\gui\\main.cpp\"",
+  "file": "C:/Users/j.kalnius/Documents/Process Simulator/src/gui/main.cpp",
+  "output": "C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/chemsim_gui.dir/src/gui/main.cpp.obj"
+},
+{
+  "directory": "C:/Users/j.kalnius/Documents/Process Simulator/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DCHEMSIM_DATA_DIR=\"\\\"C:/Users/j.kalnius/Documents/Process Simulator/data\\\"\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -DWINVER=0x0A00 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN32_WINNT=0x0A00 -D_WIN64 -I\"C:/Users/j.kalnius/Documents/Process Simulator/src/gui\" -I\"C:/Users/j.kalnius/Documents/Process Simulator/include\" -I\"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include\" -isystem C:/msys64/ucrt64/include/eigen3 -isystem C:/msys64/mingw64/include/qt6/QtWidgets -isystem C:/msys64/mingw64/include/qt6 -isystem C:/msys64/mingw64/include/qt6/QtCore -isystem C:/msys64/mingw64/share/qt6/mkspecs/win32-g++ -isystem C:/msys64/mingw64/include/qt6/QtGui -isystem C:/msys64/mingw64/include/qt6/QtSvg -g -O0 -Wall -Wextra -std=gnu++17 -o CMakeFiles\\chemsim_gui.dir\\src\\gui\\MainWindow.cpp.obj -c \"C:\\Users\\j.kalnius\\Documents\\Process Simulator\\src\\gui\\MainWindow.cpp\"",
+  "file": "C:/Users/j.kalnius/Documents/Process Simulator/src/gui/MainWindow.cpp",
+  "output": "C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/chemsim_gui.dir/src/gui/MainWindow.cpp.obj"
+},
+{
+  "directory": "C:/Users/j.kalnius/Documents/Process Simulator/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DCHEMSIM_DATA_DIR=\"\\\"C:/Users/j.kalnius/Documents/Process Simulator/data\\\"\" -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -DWINVER=0x0A00 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN32_WINNT=0x0A00 -D_WIN64 -I\"C:/Users/j.kalnius/Documents/Process Simulator/src/gui\" -I\"C:/Users/j.kalnius/Documents/Process Simulator/include\" -I\"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include\" -isystem C:/msys64/ucrt64/include/eigen3 -isystem C:/msys64/mingw64/include/qt6/QtWidgets -isystem C:/msys64/mingw64/include/qt6 -isystem C:/msys64/mingw64/include/qt6/QtCore -isystem C:/msys64/mingw64/share/qt6/mkspecs/win32-g++ -isystem C:/msys64/mingw64/include/qt6/QtGui -isystem C:/msys64/mingw64/include/qt6/QtSvg -g -O0 -Wall -Wextra -std=gnu++17 -o CMakeFiles\\chemsim_gui.dir\\src\\gui\\FlowsheetCanvas.cpp.obj -c \"C:\\Users\\j.kalnius\\Documents\\Process Simulator\\src\\gui\\FlowsheetCanvas.cpp\"",
+  "file": "C:/Users/j.kalnius/Documents/Process Simulator/src/gui/FlowsheetCanvas.cpp",
+  "output": "C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/chemsim_gui.dir/src/gui/FlowsheetCanvas.cpp.obj"
+},
+{
+  "directory": "C:/Users/j.kalnius/Documents/Process Simulator/build",
   "command": "C:\\msys64\\mingw64\\bin\\g++.exe -DCHEMSIM_DATA_DIR=\"\\\"C:/Users/j.kalnius/Documents/Process Simulator/data\\\"\" -I\"C:/Users/j.kalnius/Documents/Process Simulator/include\" -I\"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/nlohmann_json-src/include\" -isystem C:/msys64/ucrt64/include/eigen3 -isystem \"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest/include\" -isystem \"C:/Users/j.kalnius/Documents/Process Simulator/build/_deps/googletest-src/googletest\" -g -O0 -Wall -Wextra -std=gnu++17 -o CMakeFiles\\run_tests.dir\\tests\\test_phase1.cpp.obj -c \"C:\\Users\\j.kalnius\\Documents\\Process Simulator\\tests\\test_phase1.cpp\"",
   "file": "C:/Users/j.kalnius/Documents/Process Simulator/tests/test_phase1.cpp",
   "output": "C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/run_tests.dir/tests/test_phase1.cpp.obj"
