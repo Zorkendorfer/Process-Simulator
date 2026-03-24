@@ -5,6 +5,7 @@ build-macos/
 dist/
 *.egg-info/
 .venv/
+.venv-mac-test/
 
 # Python bytecode
 __pycache__/
