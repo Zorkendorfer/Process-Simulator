@@ -169,6 +169,11 @@ void DistillationColumn::solve() {
         }
     }
 
+    // Store per-stage temperatures (1-indexed, index 0 unused)
+    T_stages_.assign(N + 1, 0.0);
+    for (int j = 1; j <= N; ++j)
+        T_stages_[j] = bubbleT(x_stage[j], P_);
+
     // ── Build distillate and bottoms ─────────────────────────────────────
     // Total condenser: distillate composition = y_{stage 1} = K_{i,1} * x_{1,i}
     std::vector<double> xD(nc), xB(nc);

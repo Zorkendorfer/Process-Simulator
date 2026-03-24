@@ -1,4 +1,5 @@
 #include "chemsim/io/FlowsheetParser.hpp"
+#include "chemsim/flowsheet/DistillationColumnOp.hpp"
 #include "chemsim/flowsheet/FlashDrumOp.hpp"
 #include "chemsim/flowsheet/MixerOp.hpp"
 #include "chemsim/flowsheet/PumpOp.hpp"
@@ -91,6 +92,19 @@ std::unique_ptr<Flowsheet> FlowsheetParser::parseFileUnique(
                     flowsheet->flashCalculator(),
                     unit_json.at("P_out").get<double>(),
                     unit_json.value("eta", 0.75)));
+        } else if (type == "DistillationColumn") {
+            flowsheet->addUnit(
+                name,
+                std::make_unique<DistillationColumnOp>(
+                    flowsheet->flashCalculator(),
+                    flowsheet->components(),
+                    unit_json.at("N_stages").get<int>(),
+                    unit_json.at("feed_stage").get<int>(),
+                    unit_json.at("reflux_ratio").get<double>(),
+                    unit_json.at("distillate_frac").get<double>(),
+                    unit_json.value("P_top", 101325.0),
+                    unit_json.value("feed_quality", 1.0),
+                    unit_json.value("max_iter", 15)));
         } else {
             throw std::invalid_argument("FlowsheetParser: unknown unit type '" + type + "'");
         }
@@ -179,6 +193,19 @@ Flowsheet FlowsheetParser::parseFile(const std::string& json_path,
                     flowsheet.flashCalculator(),
                     unit_json.at("P_out").get<double>(),
                     unit_json.value("eta", 0.75)));
+        } else if (type == "DistillationColumn") {
+            flowsheet.addUnit(
+                name,
+                std::make_unique<DistillationColumnOp>(
+                    flowsheet.flashCalculator(),
+                    flowsheet.components(),
+                    unit_json.at("N_stages").get<int>(),
+                    unit_json.at("feed_stage").get<int>(),
+                    unit_json.at("reflux_ratio").get<double>(),
+                    unit_json.at("distillate_frac").get<double>(),
+                    unit_json.value("P_top", 101325.0),
+                    unit_json.value("feed_quality", 1.0),
+                    unit_json.value("max_iter", 15)));
         } else {
             throw std::invalid_argument("FlowsheetParser: unknown unit type '" + type + "'");
         }

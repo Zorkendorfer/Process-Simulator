@@ -1,4 +1,5 @@
 #include "chemsim/flowsheet/Flowsheet.hpp"
+#include "chemsim/flowsheet/DistillationColumnOp.hpp"
 #include "chemsim/io/FlowsheetParser.hpp"
 #include <fstream>
 #include <iomanip>
@@ -92,7 +93,8 @@ Stream& Flowsheet::addStream(const std::string& name,
     stream.z = compositionVector(composition);
     initializeThermo(stream);
 
-    streams_[name] = stream;
+    streams_[name]      = stream;
+    base_streams_[name] = stream;   // snapshot for resetToBase()
     graph_.setFeed(name, stream);
     return streams_.at(name);
 }
@@ -204,6 +206,35 @@ void Flowsheet::exportResults(const std::string& json_path) const {
     if (!out.is_open())
         throw std::runtime_error("Flowsheet: cannot open results path " + json_path);
     out << resultsAsJson().dump(2);
+}
+
+// ── RL interface ─────────────────────────────────────────────────────────────
+
+void Flowsheet::setParam(const std::string& unit_name,
+                         const std::string& param_name, double value) {
+    auto& op = graph_.unit(unit_name);
+    if (auto* col = dynamic_cast<DistillationColumnOp*>(&op)) {
+        if (param_name == "refluxRatio")    { col->setRefluxRatio(value);    return; }
+        if (param_name == "distillateFrac") { col->setDistillateFrac(value); return; }
+    }
+    throw std::invalid_argument(
+        "Flowsheet::setParam: unknown unit '" + unit_name +
+        "' or param '" + param_name + "'");
+}
+
+void Flowsheet::setStreamConditions(const std::string& stream_name,
+                                    double T, double P) {
+    auto& s = streams_.at(stream_name);
+    s.T = T;
+    s.P = P;
+    initializeThermo(s);
+    graph_.setFeed(stream_name, s);
+}
+
+void Flowsheet::resetToBase() {
+    streams_ = base_streams_;
+    for (const auto& [name, s] : base_streams_)
+        graph_.setFeed(name, s);
 }
 
 Flowsheet Flowsheet::fromJSON(const std::string& json_path,

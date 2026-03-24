@@ -1,0 +1,42 @@
+{
+  "components": ["METHANE", "ETHANE", "PROPANE"],
+  "streams": {
+    "FEED": {
+      "T": 250.0,
+      "P": 2000000.0,
+      "flow": 100.0,
+      "composition": {"METHANE": 0.50, "ETHANE": 0.30, "PROPANE": 0.20}
+    }
+  },
+  "units": {
+    "MIX": {
+      "type": "Mixer",
+      "inlet_ports": ["feed", "recycle"]
+    },
+    "COL1": {
+      "type": "DistillationColumn",
+      "N_stages": 10,
+      "feed_stage": 5,
+      "reflux_ratio": 2.0,
+      "distillate_frac": 0.40,
+      "P_top": 2000000.0,
+      "feed_quality": 1.0,
+      "max_iter": 15
+    },
+    "SPLIT": {
+      "type": "Splitter",
+      "fractions": [0.70, 0.30]
+    }
+  },
+  "connections": [
+    {"stream": "FEED",         "to": "MIX",   "to_port": "feed"},
+    {"stream": "RECYCLE",      "from": "SPLIT", "from_port": "out1",
+                               "to":   "MIX",   "to_port":  "recycle"},
+    {"stream": "MIXED",        "from": "MIX",   "from_port": "out",
+                               "to":   "COL1",  "to_port":  "feed"},
+    {"stream": "DISTILLATE",   "from": "COL1",  "from_port": "distillate"},
+    {"stream": "BOTTOMS",      "from": "COL1",  "from_port": "bottoms",
+                               "to":   "SPLIT", "to_port":   "in"},
+    {"stream": "BOTTOMS_PROD", "from": "SPLIT", "from_port": "out0"}
+  ]
+}

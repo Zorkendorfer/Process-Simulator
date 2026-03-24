@@ -69,9 +69,17 @@ RecycleSolveResult RecycleSolver::solve(
 
     auto tear_values = initial_streams;
     for (const auto& tear : result.tear_streams) {
-        if (!tear_values.count(tear))
-            throw std::runtime_error(
-                "RecycleSolver: missing initial guess for tear stream '" + tear + "'");
+        if (!tear_values.count(tear)) {
+            // Seed from first available feed stream as initial guess
+            const auto& feeds = graph_.feeds();
+            if (feeds.empty())
+                throw std::runtime_error(
+                    "RecycleSolver: missing initial guess for tear stream '" + tear +
+                    "' and no feeds available to seed from");
+            Stream init = feeds.begin()->second;
+            init.name = tear;
+            tear_values[tear] = init;
+        }
     }
 
     for (int iter = 1; iter <= opts_.maxIter; ++iter) {

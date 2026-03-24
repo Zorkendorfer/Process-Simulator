@@ -62,7 +62,14 @@
       "Bash(grep -r \"pybind11\\\\|PYBIND11_MODULE\\\\|py::module\" '/c/Users/j.kalnius/Documents/Process Simulator' --include=*.cpp --include=*.h)",
       "Bash(grep -r \"Qt\\\\|wxWidgets\\\\|ImGui\\\\|window\\\\|widget\" '/c/Users/j.kalnius/Documents/Process Simulator/src' --include=*.cpp --include=*.h)",
       "Bash(cmake .. -DBUILD_GUI=OFF -DCMAKE_BUILD_TYPE=Release)",
-      "Bash(cmake --build . --target chemsim -j4)"
+      "Bash(cmake --build . --target chemsim -j4)",
+      "Bash(ninja chemsim:*)",
+      "Bash(PATH=\"/mingw64/bin:$PATH\" python -c \":*)",
+      "Bash(PATH=\"/c/msys64/mingw64/bin:$PATH\" python -c \":*)",
+      "Bash(ls \"/c/Users/j.kalnius/Documents/Process Simulator/build/\"*.pyd)",
+      "Bash(python -c \"import sys; print\\(sys.version\\)\")",
+      "Bash(python -c \":*)",
+      "Bash(pip install:*)"
     ]
   }
 }

@@ -6,6 +6,7 @@
 #include "chemsim/core/Component.hpp"
 #include "chemsim/core/Stream.hpp"
 #include "chemsim/flowsheet/Flowsheet.hpp"
+#include "chemsim/flowsheet/DistillationColumnOp.hpp"
 #include "chemsim/flowsheet/FlashDrumOp.hpp"
 #include "chemsim/flowsheet/MixerOp.hpp"
 #include "chemsim/flowsheet/SplitterOp.hpp"
@@ -261,6 +262,42 @@ Outlet ports are ``"out0"``, ``"out1"``, etc.
             py::arg("eta") = 0.75,
             "Add an isentropic pump. P_out in Pa, eta ∈ (0, 1].")
 
+        .def("add_distillation_column",
+            [](Flowsheet& fs, const std::string& name,
+               int N_stages, int feed_stage,
+               double reflux_ratio, double distillate_frac,
+               double P_top, double feed_quality, int max_iter) {
+                fs.addUnit(name,
+                    std::make_unique<DistillationColumnOp>(
+                        fs.flashCalculator(), fs.components(),
+                        N_stages, feed_stage,
+                        reflux_ratio, distillate_frac,
+                        P_top, feed_quality, max_iter));
+            },
+            py::arg("name"),
+            py::arg("N_stages"),
+            py::arg("feed_stage"),
+            py::arg("reflux_ratio"),
+            py::arg("distillate_frac"),
+            py::arg("P_top")        = 101325.0,
+            py::arg("feed_quality") = 1.0,
+            py::arg("max_iter")     = 15,
+            R"doc(
+Add a distillation column (CMO model, Wilson K-values).
+
+Inlet: "feed"    Outlets: "distillate", "bottoms"
+
+Parameters
+----------
+N_stages       : int    Number of theoretical stages (including reboiler).
+feed_stage     : int    Feed stage, 1-indexed from top.
+reflux_ratio   : float  L/D.
+distillate_frac: float  D/F ∈ (0, 1).
+P_top          : float  Column pressure [Pa].
+feed_quality   : float  q — 1=sat. liquid, 0=sat. vapor.
+max_iter       : int    Wang-Henke outer iterations.
+)doc")
+
         // ── Connect ────────────────────────────────────────────────────────
         .def("connect",
             [](Flowsheet& fs,
@@ -313,6 +350,54 @@ Use empty strings for feed streams (no producing unit) or terminal product strea
             py::arg("tol_z")      = 1e-6,
             py::arg("relaxation") = 1.0,
             "Solve with custom convergence options.")
+
+        // ── RL interface ───────────────────────────────────────────────────
+        .def("set_param",
+            &Flowsheet::setParam,
+            py::arg("unit_name"), py::arg("param_name"), py::arg("value"),
+            R"doc(
+Set a named parameter on a unit operation.
+
+Supported params for DistillationColumn:
+  ``"refluxRatio"``    — L/D
+  ``"distillateFrac"`` — D/F
+)doc")
+
+        .def("set_stream_conditions",
+            &Flowsheet::setStreamConditions,
+            py::arg("stream_name"), py::arg("T"), py::arg("P"),
+            "Update feed stream T [K] and P [Pa] without changing composition or flow.")
+
+        .def("reset_to_base",
+            &Flowsheet::resetToBase,
+            "Reset all streams to their initial state (for RL episode reset).")
+
+        .def("get_unit_scalar",
+            [](const Flowsheet& fs,
+               const std::string& unit_name,
+               const std::string& key) -> double {
+                const auto& op = fs.getUnit(unit_name);
+                if (const auto* col =
+                        dynamic_cast<const DistillationColumnOp*>(&op)) {
+                    if (key == "T_top")         return col->T_top();
+                    if (key == "T_mid")         return col->T_mid();
+                    if (key == "T_bottom")      return col->T_bottom();
+                    if (key == "reboilerDuty")  return col->reboilerDuty();
+                    if (key == "condenserDuty") return col->condenserDuty();
+                }
+                throw std::invalid_argument(
+                    "get_unit_scalar: unknown unit '" + unit_name +
+                    "' or key '" + key + "'");
+            },
+            py::arg("unit_name"), py::arg("key"),
+            R"doc(
+Read a scalar result from a unit operation after solve().
+
+DistillationColumn keys:
+  ``"T_top"``, ``"T_mid"``, ``"T_bottom"``  — stage temperatures [K]
+  ``"reboilerDuty"``                          — reboiler heat duty [W]
+  ``"condenserDuty"``                         — condenser heat duty [W]
+)doc")
 
         // ── Results ────────────────────────────────────────────────────────
         .def("stream_names", &Flowsheet::streamNames,

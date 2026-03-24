@@ -53,6 +53,17 @@ public:
     nlohmann::json resultsAsJson() const;
     void exportResults(const std::string& json_path) const;
 
+    // ── RL interface ──────────────────────────────────────────────────────────
+    // Set a named parameter on a unit op (e.g. "refluxRatio", "distillateFrac")
+    void setParam(const std::string& unit_name,
+                  const std::string& param_name, double value);
+
+    // Update an existing feed stream's T and P (composition/flow unchanged)
+    void setStreamConditions(const std::string& stream_name, double T, double P);
+
+    // Reset all streams to their state at the time they were first added
+    void resetToBase();
+
     static Flowsheet fromJSON(const std::string& json_path,
                               const std::string& component_db_path);
     static std::unique_ptr<Flowsheet> fromJSONUnique(const std::string& json_path,
@@ -64,6 +75,7 @@ private:
     std::unique_ptr<FlashCalculator> flash_;
     FlowsheetGraph graph_;
     std::map<std::string, Stream> streams_;
+    std::map<std::string, Stream> base_streams_;   // snapshot for resetToBase()
     std::vector<std::string> unit_names_;
 
     std::vector<double> compositionVector(

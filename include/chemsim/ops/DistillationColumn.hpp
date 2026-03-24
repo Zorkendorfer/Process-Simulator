@@ -54,11 +54,24 @@ public:
 
     void solve();
 
+    // ── RL interface ──────────────────────────────────────────────────────────
+    void setRefluxRatio  (double R)   { R_   = R;   }
+    void setDistillateFrac(double phi) { phi_ = phi; }
+
+    // Per-stage temperatures [K], 1-indexed (filled by solve())
+    double T_top()    const { return T_stages_.size() > 1 ? T_stages_[1]       : 0.0; }
+    double T_mid()    const { return T_stages_.size() > 1 ? T_stages_[N_/2+1]  : 0.0; }
+    double T_bottom() const { return T_stages_.size() > 1 ? T_stages_[N_]      : 0.0; }
+    double reboilerDuty()  const { return Q_reboiler;  }
+    double condenserDuty() const { return Q_condenser; }
+
 private:
     const FlashCalculator&        fc_;
     const std::vector<Component>& comps_;
     int    N_, f_, maxIter_;
     double R_, phi_, P_, q_;
+
+    std::vector<double> T_stages_;   // 1-indexed, size N+1, filled by solve()
 
     // Wilson K-value for one component at T, P
     static double wilsonK_i(const Component& c, double T, double P);
