@@ -297,16 +297,21 @@ Use empty strings for feed streams (no producing unit) or terminal product strea
             "Returns True if converged.")
 
         .def("solve_with",
-            [](Flowsheet& fs, int max_iter, double tol, int n_direct) {
+            [](Flowsheet& fs, int max_iter,
+               double tol_T, double tol_P, double tol_z, double relaxation) {
                 RecycleSolver::Options opts;
                 opts.maxIter    = max_iter;
-                opts.tol        = tol;
-                opts.nDirectSub = n_direct;
+                opts.tol_T      = tol_T;
+                opts.tol_P      = tol_P;
+                opts.tol_z      = tol_z;
+                opts.relaxation = relaxation;
                 return fs.solve(opts);
             },
-            py::arg("max_iter")  = 100,
-            py::arg("tol")       = 1e-6,
-            py::arg("n_direct")  = 5,
+            py::arg("max_iter")   = 100,
+            py::arg("tol_T")      = 0.01,
+            py::arg("tol_P")      = 1.0,
+            py::arg("tol_z")      = 1e-6,
+            py::arg("relaxation") = 1.0,
             "Solve with custom convergence options.")
 
         // ── Results ────────────────────────────────────────────────────────

@@ -1,6 +1,5 @@
 C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/chemsim_core.dir
 C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/chemsim.dir
-C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/chemsim_gui.dir
 C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/run_tests.dir
 C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/test.dir
 C:/Users/j.kalnius/Documents/Process Simulator/build/CMakeFiles/edit_cache.dir
