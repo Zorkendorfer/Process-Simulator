@@ -14,7 +14,11 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -Wall -Wextra")
 # ── Dependencies ──────────────────────────────────────────────────────────────
 find_package(Eigen3 REQUIRED)
 find_package(Python3 COMPONENTS Interpreter Development.Module)
-find_package(Qt6 COMPONENTS Widgets Svg QUIET)
+
+option(BUILD_GUI "Build the Qt6 GUI application" OFF)
+if(BUILD_GUI)
+  find_package(Qt6 COMPONENTS Widgets Svg QUIET)
+endif()
 
 # GoogleTest via FetchContent (no git submodule needed for now)
 include(FetchContent)
@@ -54,7 +58,7 @@ target_link_libraries(chemsim PRIVATE chemsim_core)
 target_compile_definitions(chemsim PRIVATE
     CHEMSIM_DATA_DIR="${CMAKE_SOURCE_DIR}/data")
 
-if(Qt6_FOUND)
+if(BUILD_GUI AND Qt6_FOUND)
   add_executable(chemsim_gui
     src/gui/main.cpp
     src/gui/MainWindow.cpp
@@ -63,6 +67,8 @@ if(Qt6_FOUND)
   target_link_libraries(chemsim_gui PRIVATE chemsim_core Qt6::Widgets Qt6::Svg)
   target_compile_definitions(chemsim_gui PRIVATE
       CHEMSIM_DATA_DIR="${CMAKE_SOURCE_DIR}/data")
+elseif(BUILD_GUI AND NOT Qt6_FOUND)
+  message(WARNING "BUILD_GUI=ON but Qt6 was not found — GUI target skipped")
 endif()
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
