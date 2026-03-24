@@ -27,7 +27,11 @@
       "Read(//c/Users/j.kalnius/Documents/Process Simulator/build/$PROJ/**)",
       "Bash(cmake \"$PROJ\" -G \"Ninja\" -DCMAKE_C_COMPILER=/c/msys64/ucrt64/bin/gcc.exe -DCMAKE_CXX_COMPILER=/c/msys64/ucrt64/bin/g++.exe -DCMAKE_BUILD_TYPE=Debug)",
       "Bash(ninja)",
-      "Bash(./run_tests.exe)"
+      "Bash(./run_tests.exe)",
+      "Bash(export PATH=\"/c/msys64/ucrt64/bin:$PATH\" cd \"c:/Users/j.kalnius/Documents/Process Simulator/build2\" ninja)",
+      "Bash(grep -E \"\\(^[0-9]+:\\(Methane|Ethane|Propane|Butane|Pentane|Carbon dioxide|Water\\)$|^[0-9]+:\\\\s+\\(Methane|Ethane|Propane|Butane|Pentane|Carbon dioxide|Water\\)\\)\")",
+      "Bash(grep -n \"^Methane$\\\\|^Ethane$\\\\|^Propane$\\\\|^n-Butane\\\\|^n-Pentane\\\\|^Carbon dioxide\\\\|^Water\" \"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\data\\\\Perrys_Chemical_Engineers_Handbook.txt\")",
+      "Bash(./run_tests.exe --gtest_brief=1)"
     ]
   }
 }

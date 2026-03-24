@@ -1,5 +1,7 @@
 #include "chemsim/thermo/PengRobinson.hpp"
 #include <cmath>
+
+namespace { constexpr double PI = 3.14159265358979323846; }
 #include <stdexcept>
 #include <algorithm>
 #include <numeric>
@@ -112,8 +114,8 @@ std::vector<double> PengRobinson::solveCubic(double p, double q, double r) {
         double theta = std::acos(std::clamp(-b / (2.0 * r_val), -1.0, 1.0));
         double m = 2.0 * std::cbrt(r_val);
         roots.push_back(m * std::cos(theta / 3.0)             - p/3.0);
-        roots.push_back(m * std::cos((theta + 2.0*M_PI) / 3.0) - p/3.0);
-        roots.push_back(m * std::cos((theta + 4.0*M_PI) / 3.0) - p/3.0);
+        roots.push_back(m * std::cos((theta + 2.0*PI) / 3.0) - p/3.0);
+        roots.push_back(m * std::cos((theta + 4.0*PI) / 3.0) - p/3.0);
     }
 
     std::sort(roots.begin(), roots.end());

@@ -74,7 +74,7 @@ TEST(BrentSolver, TightTolerance) {
     // sin(x) = 0 near π
     auto res = BrentSolver::solve([](double x){ return std::sin(x); }, 3.0, 4.0,
                                   {1e-14, 300});
-    EXPECT_NEAR(res.root, M_PI, 1e-12);
+    EXPECT_NEAR(res.root, std::acos(-1.0), 1e-12);
 }
 
 // ═══════════════════════════════════════════════════════════
