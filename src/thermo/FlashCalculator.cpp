@@ -111,6 +111,27 @@ FlashResult FlashCalculator::successiveSubstitution(double T, double P,
 FlashResult FlashCalculator::flashTP(double T, double P,
                                      const std::vector<double>& z) const {
     auto K0 = wilsonK(T, P);
+
+    // Quick single-phase check from Wilson K before running SS:
+    // If all K >= 1 → all vapor; if all K <= 1 → all liquid.
+    double Kmax = *std::max_element(K0.begin(), K0.end());
+    double Kmin = *std::min_element(K0.begin(), K0.end());
+
+    if (Kmin >= 1.0) {
+        // All vapor
+        FlashResult r;
+        r.T = T; r.P = P; r.beta = 1.0; r.converged = true;
+        r.x = r.y = z; r.K = K0;
+        return r;
+    }
+    if (Kmax <= 1.0) {
+        // All liquid
+        FlashResult r;
+        r.T = T; r.P = P; r.beta = 0.0; r.converged = true;
+        r.x = r.y = z; r.K = K0;
+        return r;
+    }
+
     return successiveSubstitution(T, P, z, K0);
 }
 
@@ -194,6 +215,23 @@ double FlashCalculator::dewP(double T, const std::vector<double>& y) const {
     throw std::runtime_error("FlashCalculator::dewP: did not converge");
 }
 
+// ─── phaseEnthalpy / phaseEntropy ────────────────────────────────────────────
+double FlashCalculator::phaseEnthalpy(double T, double P,
+                                      const std::vector<double>& z,
+                                      bool liquid) const {
+    return Mixture::idealGasH(comps_, z, T)
+         + eos_.enthalpyDeparture(T, P, z, liquid);
+}
+
+double FlashCalculator::phaseEntropy(double T, double P,
+                                     const std::vector<double>& z,
+                                     bool liquid) const {
+    constexpr double P_ref = 101325.0;
+    return Mixture::idealGasS(comps_, z, T)
+         - R * std::log(P / P_ref)
+         + eos_.entropyDeparture(T, P, z, liquid);
+}
+
 // ─── totalEnthalpy ────────────────────────────────────────────────────────────
 // H = β*(H_ig,V + H_dep,V) + (1-β)*(H_ig,L + H_dep,L)  [J/mol]
 double FlashCalculator::totalEnthalpy(const FlashResult& r) const {
@@ -206,11 +244,11 @@ double FlashCalculator::totalEnthalpy(const FlashResult& r) const {
 
 // ─── totalEntropy ─────────────────────────────────────────────────────────────
 // S = β*(S_ig,V + S_dep,V) + (1-β)*(S_ig,L + S_dep,L)  [J/mol/K]
-// Note: S_ig here excludes the -R*ln(P/P_ref) term; for inter-state differences
-// at constant P this term cancels and the result is internally consistent.
+// Includes -R*ln(P/P_ref) so cross-pressure isentropic calculations are correct.
 double FlashCalculator::totalEntropy(const FlashResult& r) const {
-    double S_igV = Mixture::idealGasS(comps_, r.y, r.T);
-    double S_igL = Mixture::idealGasS(comps_, r.x, r.T);
+    constexpr double P_ref = 101325.0;
+    double S_igV = Mixture::idealGasS(comps_, r.y, r.T) - R * std::log(r.P / P_ref);
+    double S_igL = Mixture::idealGasS(comps_, r.x, r.T) - R * std::log(r.P / P_ref);
     double S_depV = eos_.entropyDeparture(r.T, r.P, r.y, false);
     double S_depL = eos_.entropyDeparture(r.T, r.P, r.x, true);
     return r.beta * (S_igV + S_depV) + (1.0 - r.beta) * (S_igL + S_depL);

@@ -36,7 +36,29 @@
       "Bash(grep -n \"^Methane$\\\\|^Propane$\\\\|^n-Butane$\\\\|^n-Pentane$\\\\|^Butane$\\\\|^Pentane$\\\\|^Water$\")",
       "Bash(__NEW_LINE_85dd701561ed91ed__ cat:*)",
       "Bash(cmake .. -G Ninja)",
-      "Bash(./run_tests.exe --gtest_filter=\"*Phase2*:*MixtureThermo*:*FourComp*\")"
+      "Bash(./run_tests.exe --gtest_filter=\"PumpTest.*:CompressorTest.*\")",
+      "Bash(cmake --build build --config Release)",
+      "Bash(find 'c:/Users/j.kalnius/Documents/Process Simulator' -name *.sln -o -name CMakeLists.txt -o -name build.ninja)",
+      "Bash(ls /usr/bin/cmake* /usr/bin/ninja*)",
+      "Read(//c/Windows/System32/**)",
+      "Bash(ls /mingw64/bin/cmake* /mingw64/bin/ninja*)",
+      "Bash(\"/c/msys64/ucrt64/bin/ninja.exe\")",
+      "Bash(\"/c/msys64/ucrt64/bin/g++.exe\" -I\"/c/Users/j.kalnius/Documents/Process Simulator/include\" -std=gnu++17 -c \"/c/Users/j.kalnius/Documents/Process Simulator/src/thermo/FlashCalculator.cpp\")",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(cmd /c 'cd \"\"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\build2\"\" && \"\"C:\\\\msys64\\\\ucrt64\\\\bin\\\\g++.exe\"\" -I\"\"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\include\"\" -I\"\"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\build2\\\\_deps\\\\nlohmann_json-src\\\\include\"\" -isystem \"\"C:\\\\msys64\\\\ucrt64\\\\include\\\\eigen3\"\" -std=gnu++17 -fsyntax-only \"\"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\src\\\\thermo\\\\FlashCalculator.cpp\"\" && echo SUCCESS')",
+      "Bash(powershell -Command '& \"\"C:\\\\msys64\\\\ucrt64\\\\bin\\\\g++.exe\"\" -I\"\"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\include\"\" -I\"\"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\build2\\\\_deps\\\\nlohmann_json-src\\\\include\"\" -isystem \"\"C:\\\\msys64\\\\ucrt64\\\\include\\\\eigen3\"\" -std=gnu++17 -fsyntax-only \"\"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\src\\\\thermo\\\\FlashCalculator.cpp\"\" 2>&1; echo \"\"Exit: $LASTEXITCODE\"\"')",
+      "Bash(powershell -Command ':*)",
+      "Bash(git -C \"/c/Users/j.kalnius/Documents/Process Simulator\" diff src/thermo/FlashCalculator.cpp)",
+      "Bash(\"/c/msys64/ucrt64/bin/ninja.exe\" -v)",
+      "Bash(\"C:/msys64/ucrt64/bin/g++.exe\" --version)",
+      "Bash(\"C:/msys64/ucrt64/bin/g++.exe\" -std=gnu++17 /tmp/test.cpp -o /tmp/test.exe)",
+      "Bash(echo \"rc=$?\")",
+      "Bash(pwd /tmp)",
+      "Bash(cygpath -w /tmp)",
+      "Read(//c/Users/j.kalnius/AppData/Local/Temp/**)",
+      "Bash(ldd C:/msys64/ucrt64/bin/g++.exe)",
+      "Bash(g++ -std=gnu++17 /c/Users/j.kalnius/AppData/Local/Temp/test.cpp -o /c/Users/j.kalnius/AppData/Local/Temp/test_out.exe)",
+      "Bash(/c/Users/j.kalnius/AppData/Local/Temp/test_out.exe)"
     ]
   }
 }

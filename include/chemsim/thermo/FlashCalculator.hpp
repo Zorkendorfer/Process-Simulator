@@ -46,6 +46,13 @@ public:
     double totalEnthalpy(const FlashResult& r) const;
     double totalEntropy (const FlashResult& r) const;
 
+    // ── Single-phase enthalpy / entropy ───────────────────────────────────
+    // H = H_ig(comps, z, T) + H_dep(T, P, z, liquid)  [J/mol]
+    double phaseEnthalpy(double T, double P,
+                         const std::vector<double>& z, bool liquid) const;
+    double phaseEntropy (double T, double P,
+                         const std::vector<double>& z, bool liquid) const;
+
     // ── Michelsen tangent-plane stability test ────────────────────────────
     // Returns true if feed is STABLE (no second phase can form).
     bool isStable(double T, double P,
