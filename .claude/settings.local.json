@@ -31,7 +31,12 @@
       "Bash(export PATH=\"/c/msys64/ucrt64/bin:$PATH\" cd \"c:/Users/j.kalnius/Documents/Process Simulator/build2\" ninja)",
       "Bash(grep -E \"\\(^[0-9]+:\\(Methane|Ethane|Propane|Butane|Pentane|Carbon dioxide|Water\\)$|^[0-9]+:\\\\s+\\(Methane|Ethane|Propane|Butane|Pentane|Carbon dioxide|Water\\)\\)\")",
       "Bash(grep -n \"^Methane$\\\\|^Ethane$\\\\|^Propane$\\\\|^n-Butane\\\\|^n-Pentane\\\\|^Carbon dioxide\\\\|^Water\" \"C:\\\\Users\\\\j.kalnius\\\\Documents\\\\Process Simulator\\\\data\\\\Perrys_Chemical_Engineers_Handbook.txt\")",
-      "Bash(./run_tests.exe --gtest_brief=1)"
+      "Bash(./run_tests.exe --gtest_brief=1)",
+      "Bash(grep -n \"^Methane$\\\\|^Ethane$\\\\|^Propane$\\\\|^Butane$\\\\|^n-Butane$\\\\|^Pentane$\\\\|^n-Pentane$\\\\|^Carbon dioxide$\\\\|^Water$\")",
+      "Bash(grep -n \"^Methane$\\\\|^Propane$\\\\|^n-Butane$\\\\|^n-Pentane$\\\\|^Butane$\\\\|^Pentane$\\\\|^Water$\")",
+      "Bash(__NEW_LINE_85dd701561ed91ed__ cat:*)",
+      "Bash(cmake .. -G Ninja)",
+      "Bash(./run_tests.exe --gtest_filter=\"*Phase2*:*MixtureThermo*:*FourComp*\")"
     ]
   }
 }

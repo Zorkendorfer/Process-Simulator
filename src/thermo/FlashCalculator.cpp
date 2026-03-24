@@ -1,4 +1,5 @@
 #include "chemsim/thermo/FlashCalculator.hpp"
+#include "chemsim/core/Mixture.hpp"
 #include "chemsim/numerics/BrentSolver.hpp"
 #include <cmath>
 #include <numeric>
@@ -191,6 +192,213 @@ double FlashCalculator::dewP(double T, const std::vector<double>& y) const {
         P = P_new;
     }
     throw std::runtime_error("FlashCalculator::dewP: did not converge");
+}
+
+// ─── totalEnthalpy ────────────────────────────────────────────────────────────
+// H = β*(H_ig,V + H_dep,V) + (1-β)*(H_ig,L + H_dep,L)  [J/mol]
+double FlashCalculator::totalEnthalpy(const FlashResult& r) const {
+    double H_igV = Mixture::idealGasH(comps_, r.y, r.T);
+    double H_igL = Mixture::idealGasH(comps_, r.x, r.T);
+    double H_depV = eos_.enthalpyDeparture(r.T, r.P, r.y, false);
+    double H_depL = eos_.enthalpyDeparture(r.T, r.P, r.x, true);
+    return r.beta * (H_igV + H_depV) + (1.0 - r.beta) * (H_igL + H_depL);
+}
+
+// ─── totalEntropy ─────────────────────────────────────────────────────────────
+// S = β*(S_ig,V + S_dep,V) + (1-β)*(S_ig,L + S_dep,L)  [J/mol/K]
+// Note: S_ig here excludes the -R*ln(P/P_ref) term; for inter-state differences
+// at constant P this term cancels and the result is internally consistent.
+double FlashCalculator::totalEntropy(const FlashResult& r) const {
+    double S_igV = Mixture::idealGasS(comps_, r.y, r.T);
+    double S_igL = Mixture::idealGasS(comps_, r.x, r.T);
+    double S_depV = eos_.entropyDeparture(r.T, r.P, r.y, false);
+    double S_depL = eos_.entropyDeparture(r.T, r.P, r.x, true);
+    return r.beta * (S_igV + S_depV) + (1.0 - r.beta) * (S_igL + S_depL);
+}
+
+// ─── Michelsen stability trial ────────────────────────────────────────────────
+// Performs one successive-substitution stability trial starting from w_init.
+// Phase of trial is inferred from w_init: if Σ K_i*w_i > 1, vapor-like (trial against liquid feed).
+// Returns {stable, converged_w} where stable = (TPD >= 0).
+std::pair<bool, std::vector<double>>
+FlashCalculator::stabilityTrial(double T, double P,
+                                const std::vector<double>& z,
+                                const std::vector<double>& w_init,
+                                int maxIter) const {
+    const int n = static_cast<int>(z.size());
+    auto K_w = wilsonK(T, P);
+
+    // Detect trial type: vapor-like if enriched in light components (Σ K_i*w_i > 1)
+    double kw = 0.0;
+    for (int i = 0; i < n; ++i) kw += K_w[i] * w_init[i];
+    const bool vapor_trial = (kw > 1.0);
+
+    // Feed reference: opposite phase to trial
+    // vapor trial → liquid feed reference; liquid trial → vapor feed reference
+    const bool feed_liq = vapor_trial;
+    const bool trial_liq = !vapor_trial;
+
+    auto lnPhiFeed = eos_.lnFugacityCoefficients(T, P, z, feed_liq);
+    // d_i = ln(z_i) + lnPhi_i(z, feed_phase)
+    std::vector<double> d(n);
+    for (int i = 0; i < n; ++i)
+        d[i] = std::log(z[i]) + lnPhiFeed[i];
+
+    // W_i: unnormalized trial mole numbers; initialize from w_init (normalized)
+    std::vector<double> W = w_init;
+
+    for (int iter = 0; iter < maxIter; ++iter) {
+        double sumW = std::accumulate(W.begin(), W.end(), 0.0);
+        std::vector<double> w_norm(n);
+        for (int i = 0; i < n; ++i) w_norm[i] = W[i] / sumW;
+
+        auto lnPhiTrial = eos_.lnFugacityCoefficients(T, P, w_norm, trial_liq);
+
+        // W_i_new = exp(d_i - lnPhi_i^trial)
+        std::vector<double> W_new(n);
+        double sumW_new = 0.0;
+        for (int i = 0; i < n; ++i) {
+            W_new[i] = std::exp(d[i] - lnPhiTrial[i]);
+            sumW_new += W_new[i];
+        }
+
+        // Convergence on normalized composition
+        double err = 0.0;
+        for (int i = 0; i < n; ++i)
+            err += std::abs(W_new[i] / sumW_new - W[i] / sumW);
+
+        W = W_new;
+
+        if (err < 1e-10) {
+            // Check for trivial solution (W/sumW ≈ z)
+            bool trivial = true;
+            for (int i = 0; i < n; ++i)
+                if (std::abs(W[i] / sumW_new - z[i]) > 1e-4) { trivial = false; break; }
+            if (trivial) {
+                std::vector<double> w_out(n);
+                for (int i = 0; i < n; ++i) w_out[i] = W[i] / sumW_new;
+                return {true, w_out};
+            }
+
+            // At stationarity: TPD = 1 - sumW  (Michelsen's simplification)
+            // If sumW > 1 → TPD < 0 → unstable
+            std::vector<double> w_out(n);
+            for (int i = 0; i < n; ++i) w_out[i] = W[i] / sumW_new;
+            return {sumW_new <= 1.0, w_out};
+        }
+    }
+
+    // Did not converge: assume stable (conservative)
+    std::vector<double> w_out(n);
+    double sumW_final = std::accumulate(W.begin(), W.end(), 0.0);
+    for (int i = 0; i < n; ++i) w_out[i] = W[i] / sumW_final;
+    return {true, w_out};
+}
+
+// ─── isStable ─────────────────────────────────────────────────────────────────
+// Returns true if feed is STABLE (single phase). Tests vapor-like and liquid-like
+// trials from Wilson K initial estimates.
+bool FlashCalculator::isStable(double T, double P,
+                               const std::vector<double>& z) const {
+    const int n = static_cast<int>(z.size());
+    auto K = wilsonK(T, P);
+
+    // Vapor-like trial: w_i ~ K_i * z_i
+    {
+        std::vector<double> w(n);
+        double s = 0.0;
+        for (int i = 0; i < n; ++i) { w[i] = K[i] * z[i]; s += w[i]; }
+        for (double& wi : w) wi /= s;
+        auto [stable, w_out] = stabilityTrial(T, P, z, w);
+        if (!stable) return false;
+    }
+
+    // Liquid-like trial: w_i ~ z_i / K_i
+    {
+        std::vector<double> w(n);
+        double s = 0.0;
+        for (int i = 0; i < n; ++i) { w[i] = z[i] / K[i]; s += w[i]; }
+        for (double& wi : w) wi /= s;
+        auto [stable, w_out] = stabilityTrial(T, P, z, w);
+        if (!stable) return false;
+    }
+
+    return true;
+}
+
+// ─── flashPH ─────────────────────────────────────────────────────────────────
+// Finds T (and phase split) that gives total enthalpy = H_spec [J/mol].
+FlashResult FlashCalculator::flashPH(double P, double H_spec,
+                                     const std::vector<double>& z,
+                                     double T_guess) const {
+    auto H_of_T = [&](double T) -> double {
+        auto r = flashTP(T, P, z);
+        return totalEnthalpy(r) - H_spec;
+    };
+
+    // Build bracket around T_guess by expanding until sign change
+    double T_lo = T_guess * 0.5;
+    double T_hi = T_guess * 2.0;
+    // Clamp to physically reasonable range
+    T_lo = std::max(T_lo, 100.0);
+    T_hi = std::min(T_hi, 2000.0);
+
+    double f_lo = H_of_T(T_lo);
+    double f_hi = H_of_T(T_hi);
+
+    // Expand if needed (H is monotone in T so one expansion direction suffices)
+    for (int k = 0; k < 30 && f_lo * f_hi > 0.0; ++k) {
+        if (std::abs(f_lo) < std::abs(f_hi))
+            T_lo = std::max(T_lo * 0.8, 100.0);
+        else
+            T_hi = std::min(T_hi * 1.2, 2000.0);
+        f_lo = H_of_T(T_lo);
+        f_hi = H_of_T(T_hi);
+    }
+    if (f_lo * f_hi > 0.0)
+        throw std::runtime_error("FlashCalculator::flashPH: cannot bracket temperature");
+
+    auto bres = BrentSolver::solve(H_of_T, T_lo, T_hi,
+                                   BrentSolver::Options{1e-6, 200});
+    auto r = flashTP(bres.root, P, z);
+    r.H_total = totalEnthalpy(r);
+    r.S_total = totalEntropy(r);
+    return r;
+}
+
+// ─── flashPS ─────────────────────────────────────────────────────────────────
+// Finds T (and phase split) that gives total entropy = S_spec [J/mol/K].
+FlashResult FlashCalculator::flashPS(double P, double S_spec,
+                                     const std::vector<double>& z,
+                                     double T_guess) const {
+    auto S_of_T = [&](double T) -> double {
+        auto r = flashTP(T, P, z);
+        return totalEntropy(r) - S_spec;
+    };
+
+    double T_lo = std::max(T_guess * 0.5, 100.0);
+    double T_hi = std::min(T_guess * 2.0, 2000.0);
+
+    double f_lo = S_of_T(T_lo);
+    double f_hi = S_of_T(T_hi);
+
+    for (int k = 0; k < 30 && f_lo * f_hi > 0.0; ++k) {
+        if (std::abs(f_lo) < std::abs(f_hi))
+            T_lo = std::max(T_lo * 0.8, 100.0);
+        else
+            T_hi = std::min(T_hi * 1.2, 2000.0);
+        f_lo = S_of_T(T_lo);
+        f_hi = S_of_T(T_hi);
+    }
+    if (f_lo * f_hi > 0.0)
+        throw std::runtime_error("FlashCalculator::flashPS: cannot bracket temperature");
+
+    auto bres = BrentSolver::solve(S_of_T, T_lo, T_hi,
+                                   BrentSolver::Options{1e-9, 200});
+    auto r = flashTP(bres.root, P, z);
+    r.H_total = totalEnthalpy(r);
+    r.S_total = totalEntropy(r);
+    return r;
 }
 
 } // namespace chemsim
